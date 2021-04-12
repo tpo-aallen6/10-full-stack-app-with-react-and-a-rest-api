@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react"
 
 const App = () => {
-  const [courses, setCourses] = useState()
+  const [courses = [], setCourses] = useState()
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/courses/1')
+    fetch('http://localhost:5000/api/courses')
       .then(response => response.json())
-      .then(json => {
-        console.log(json.course)
-      })
-  }, [])
+      .then(json => setCourses(json.courses))
+  }, [courses])
 
   return (
     <>
-      {/* {courses.map(course => {
-        return <pre>{JSON.stringify(course)}</pre>
-      })} */}
+      <ul>
+        {courses.map(course => {
+          return <li key={course.id}>{JSON.stringify(course)}</li>
+        })}
+      </ul>
     </>
   )
 }
