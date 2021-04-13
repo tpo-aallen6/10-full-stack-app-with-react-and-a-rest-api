@@ -1,12 +1,15 @@
-import React from 'react'
-import Courses from './Courses'
+import React from "react";
+import Courses from "./Courses";
+import UpdateCourse from "./UpdateCourse";
+import Header from "./Header";
 
 const App = () => {
   return (
     <>
-      <Courses />
+      <Header />
+      <UpdateCourse />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
