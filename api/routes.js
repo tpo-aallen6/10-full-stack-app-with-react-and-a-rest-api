@@ -1,6 +1,7 @@
 const express = require('express')
 const { asyncHandler } = require('./middleware/async-handler')
 const { authenticateUser } = require('./middleware/auth-user')
+const { sequelizeValidation } = require('./middleware/sequelizeValidation')
 const User = require('./models').Users
 const Course = require('./models').Courses
 
@@ -30,12 +31,7 @@ router.post('/users', asyncHandler(async (req, res) => {
     await User.create(req.body)
     res.redirect(201, '/')
   } catch (error) {
-    if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
-      const errors = error.errors.map(err => err.message)
-      res.status(400).json({ errors })
-    } else {
-      throw error
-    }
+    sequelizeValidation(res, error)
   }
 }))
 
@@ -98,12 +94,7 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
       })
       res.redirect(201, '/courses/' + newCourse.id)
     } catch (error) {
-      if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
-        const errors = error.errors.map(err => err.message)
-        res.status(400).json({ errors })
-      } else {
-        throw error
-      }
+      sequelizeValidation(res, error)
     }
   }
 }))
@@ -124,12 +115,7 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res) => {
       })
       res.status(204).end()
     } catch (error) {
-      if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
-        const errors = error.errors.map(err => err.message)
-        res.status(400).json({ errors })
-      } else {
-        throw error
-      }
+      sequelizeValidation(res, error)
     }
   } else {
     res.status(403).json({ msg: 'Access denied' })

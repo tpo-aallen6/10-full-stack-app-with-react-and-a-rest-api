@@ -7,15 +7,21 @@ const App = () => {
     fetch('http://localhost:5000/api/courses')
       .then(response => response.json())
       .then(json => setCourses(json.courses))
-  }, [courses])
+  }, [])
 
   return (
     <>
-      <ul>
+      <p>
         {courses.map(course => {
-          return <li key={course.id}>{JSON.stringify(course)}</li>
+          return (
+            <p key={course.id}><h3>Course: {JSON.stringify(course.id)}</h3>
+              <span>{JSON.stringify(course.title)}</span>
+              <br />
+              <span>{JSON.stringify(course.description)}</span>
+            </p>
+          )
         })}
-      </ul>
+      </p>
     </>
   )
 }
