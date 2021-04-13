@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <UpdateCourse />
+      <Courses />
     </>
   );
 };
