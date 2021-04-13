@@ -1,53 +1,53 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 const CourseDetail = () => {
-  const [courses = [], setCourses] = useState();
+  const [courses = [], setCourses] = useState()
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/courses")
+    fetch('http://localhost:5000/api/courses')
       .then((response) => response.json())
-      .then((json) => setCourses(json.courses));
-  }, []);
+      .then((json) => setCourses(json.courses))
+  }, [])
 
   return (
     <>
       <header>
-        <div class="wrap header--flex">
-          <h1 class="header--logo">
-            <a href="index.html">Courses</a>
+        <div class='wrap header--flex'>
+          <h1 class='header--logo'>
+            <a href='index.html'>Courses</a>
           </h1>
           <nav>
-            <ul class="header--signedin">
+            <ul class='header--signedin'>
               <li>Welcome, Joe Smith!</li>
               <li>
-                <a href="sign-out.html">Sign Out</a>
+                <a href='sign-out.html'>Sign Out</a>
               </li>
             </ul>
           </nav>
         </div>
       </header>
       <main>
-        <div class="actions--bar">
-          <div class="wrap">
-            <a class="button" href="update-course.html">
+        <div class='actions--bar'>
+          <div class='wrap'>
+            <a class='button' href='update-course.html'>
               Update Course
             </a>
-            <a class="button" href="#">
+            <a class='button' href='#'>
               Delete Course
             </a>
-            <a class="button button-secondary" href="index.html">
+            <a class='button button-secondary' href='index.html'>
               Return to List
             </a>
           </div>
         </div>
 
-        <div class="wrap">
+        <div class='wrap'>
           <h2>Course Detail</h2>
           <form>
-            <div class="main--flex">
+            <div class='main--flex'>
               <div>
-                <h3 class="course--detail--title">Course</h3>
-                <h4 class="course--name">Build a Basic Bookcase</h4>
+                <h3 class='course--detail--title'>Course</h3>
+                <h4 class='course--name'>Build a Basic Bookcase</h4>
                 <p>By Joe Smith</p>
 
                 <p>
@@ -103,11 +103,11 @@ const CourseDetail = () => {
                 </p>
               </div>
               <div>
-                <h3 class="course--detail--title">Estimated Time</h3>
+                <h3 class='course--detail--title'>Estimated Time</h3>
                 <p>14 hours</p>
 
-                <h3 class="course--detail--title">Materials Needed</h3>
-                <ul class="course--detail--list">
+                <h3 class='course--detail--title'>Materials Needed</h3>
+                <ul class='course--detail--list'>
                   <li>1/2 x 3/4 inch parting strip</li>
                   <li>1 x 2 common pine</li>
                   <li>1 x 4 common pine</li>
@@ -125,7 +125,7 @@ const CourseDetail = () => {
         </div>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default CourseDetail;
+export default CourseDetail

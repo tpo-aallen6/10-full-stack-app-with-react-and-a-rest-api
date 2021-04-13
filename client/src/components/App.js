@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import Courses from "./Courses";
-import CourseDetail from "./CourseDetail";
+import React from "react"
+import Courses from "./Courses"
 
 const App = () => {
-
   return (
     <>
-      <CourseDetail />
+      <Courses />
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App
