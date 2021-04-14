@@ -8,7 +8,8 @@ const Courses = () => {
   useEffect(() => {
     fetch("http://localhost:5000/api/courses")
       .then((response) => response.json())
-      .then((json) => setCourses(json.courses));
+      .then((json) => setCourses(json.courses))
+      .catch(error => console.error(error))
   }, []);
 
   const renderedCourses = courses.map((course) => {
