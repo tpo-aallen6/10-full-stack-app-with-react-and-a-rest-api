@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react';
 
 const UpdateCourse = () => {
   return (
     <>
       <main>
-        <div class="wrap">
+        <div class='wrap'>
           <h2>Update Course</h2>
           <form>
-            <div class="main--flex">
+            <div class='main--flex'>
               <div>
-                <label for="courseTitle">Course Title</label>
+                <label for='courseTitle'>Course Title</label>
                 <input
-                  id="courseTitle"
-                  name="courseTitle"
-                  type="text"
-                  value="Build a Basic Bookcase"
+                  id='courseTitle'
+                  name='courseTitle'
+                  type='text'
+                  value='Build a Basic Bookcase'
                 />
 
-                <label for="courseAuthor">Course Author</label>
+                <label for='courseAuthor'>Course Author</label>
                 <input
-                  id="courseAuthor"
-                  name="courseAuthor"
-                  type="text"
-                  value="Joe Smith"
+                  id='courseAuthor'
+                  name='courseAuthor'
+                  type='text'
+                  value='Joe Smith'
                 />
 
-                <label for="courseDescription">Course Description</label>
-                <textarea id="courseDescription" name="courseDescription">
+                <label for='courseDescription'>Course Description</label>
+                <textarea id='courseDescription' name='courseDescription'>
                   High-end furniture projects are great to dream about. But
                   unless you have a well-equipped shop and some serious
                   woodworking experience to draw on, it can be difficult to turn
@@ -62,16 +62,16 @@ const UpdateCourse = () => {
                 </textarea>
               </div>
               <div>
-                <label for="estimatedTime">Estimated Time</label>
+                <label for='estimatedTime'>Estimated Time</label>
                 <input
-                  id="estimatedTime"
-                  name="estimatedTime"
-                  type="text"
-                  value="14 hours"
+                  id='estimatedTime'
+                  name='estimatedTime'
+                  type='text'
+                  value='14 hours'
                 />
 
-                <label for="materialsNeeded">Materials Needed</label>
-                <textarea id="materialsNeeded" name="materialsNeeded">
+                <label for='materialsNeeded'>Materials Needed</label>
+                <textarea id='materialsNeeded' name='materialsNeeded'>
                   * 1/2 x 3/4 inch parting strip&#13;&#13;* 1 x 2 common
                   pine&#13;&#13;* 1 x 4 common pine&#13;&#13;* 1 x 10 common
                   pine&#13;&#13;* 1/4 inch thick lauan plywood&#13;&#13;*
@@ -81,11 +81,11 @@ const UpdateCourse = () => {
                 </textarea>
               </div>
             </div>
-            <button class="button" type="submit">
+            <button class='button' type='submit'>
               Update Course
             </button>
             <button
-              class="button button-secondary"
+              class='button button-secondary'
               onclick="event.preventDefault(); location.href='index.html';"
             >
               Cancel
@@ -94,7 +94,7 @@ const UpdateCourse = () => {
         </div>
       </main>
     </>
-  );
+  )
 };
 
-export default UpdateCourse;
+export default UpdateCourse

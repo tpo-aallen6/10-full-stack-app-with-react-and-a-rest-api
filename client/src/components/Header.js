@@ -1,25 +1,26 @@
-import React from "react";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
     <>
       <header>
-        <div class="wrap header--flex">
-          <h1 class="header--logo">
-            <a href="index.html">Courses</a>
+        <div class='wrap header--flex'>
+          <h1 class='header--logo'>
+            <Link to='/api/courses'>Courses</Link>
           </h1>
           <nav>
-            <ul class="header--signedin">
-              <li>Welcome, Joe Smith!</li>
+            <ul class='header--signedin'>
+              <li>Welcome, **CHANGE TO CURRENTLY LOGGED IN USER**</li>
               <li>
-                <a href="sign-out.html">Sign Out</a>
+                <a href='sign-out.html'>Sign Out</a>
               </li>
             </ul>
           </nav>
         </div>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
