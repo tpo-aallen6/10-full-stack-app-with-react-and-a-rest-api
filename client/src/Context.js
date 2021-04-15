@@ -1,23 +1,32 @@
-import React, { Component } from 'react'
-import Data from './data'
+import React, { useState } from "react"
+import Data from './Data'
 
-export class Provider extends Component {
-  constructor() {
-    super()
+export const CourseContext = React.createContext()
+
+export const Provider = () => {
+  const [authenticatedUser, setAuthUser] = useState(null)
+  const data = new Data()
+
+  const userSignIn = async (username, password) => {
+    const user = await data.getUser(username, password)
+
+    if (user !== null) {
+      setAuthUser(() => {
+        return {
+          authenticatedUser: user
+        }
+      })
+    }
   }
 
-render() {
   return (
-    <Context.Provider>
-      {this.props.children}
-    </Context.Provider>
+    <CourseContext value={{
+      authenticatedUser,
+      data,
+      actions: {
+        signIn: userSignIn
+      }
+    }}
+    />
   )
-}
-
-signIn = async () => {
-
-}
-
-signOut 
-
 }
