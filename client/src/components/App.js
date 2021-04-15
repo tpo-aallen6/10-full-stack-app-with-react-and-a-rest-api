@@ -19,11 +19,9 @@ const App = () => {
           <Route exact path='/api/courses'>
             <Courses />
           </Route>
-          <Route path='/api/courses/:id'>
+          <Route exact path='/api/courses/create' render={() => <CreateCourse />} />
+          <Route exact path='/api/courses/:id'>
             <CourseDetail />
-          </Route>
-          <Route path='/api/courses/create'>
-            <CreateCourse />
           </Route>
           <Redirect exact path='/' to='/api/courses' />
         </Switch>

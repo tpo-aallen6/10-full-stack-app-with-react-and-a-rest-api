@@ -33,7 +33,7 @@ const Courses = () => {
         <div className='wrap main--grid'>
           {renderedCourses}
           <Link
-            to='/api/courses/create'
+            exact to='/api/courses/create'
             className='course--module course--add--module'
             href='create-course.html'
           >
