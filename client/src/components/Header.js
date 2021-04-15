@@ -7,7 +7,7 @@ const Header = () => {
       <header>
         <div className='wrap header--flex'>
           <h1 className='header--logo'>
-            <Link to='/api/courses'>Courses</Link>
+            <Link to='/courses'>Courses</Link>
           </h1>
           <nav>
             <ul className='header--signedin'>

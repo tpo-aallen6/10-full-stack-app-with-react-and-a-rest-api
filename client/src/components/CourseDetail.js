@@ -25,13 +25,13 @@ const CourseDetail = () => {
       <main>
         <div className='actions--bar'>
           <div className='wrap'>
-            <Link className='button' to={`/api/courses/${id}/update`}>
+            <Link className='button' to={`/courses/${id}/update`}>
               Update Course
             </Link>
-            <Link className='button' to={`/api/courses/${id}/delete`}>
+            <Link className='button' to={`/courses/${id}/delete`}>
               Delete Course
             </Link>
-            <Link className='button button-secondary' to='/api/courses'>
+            <Link className='button button-secondary' to='/courses'>
               Return to List
             </Link>
           </div>

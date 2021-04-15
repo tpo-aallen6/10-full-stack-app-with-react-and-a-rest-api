@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import CourseDetail from './CourseDetail'
 import CreateCourse from './CreateCourse'
+import NotFound from './NotFound'
 
 const App = () => {
   return (
@@ -16,16 +17,11 @@ const App = () => {
       <div>
         <Header />
         <Switch>
-          <Route exact path='/api/courses'>
-            <Courses />
-          </Route>
-          <Route exact path='/api/courses/create'>
-            <CreateCourse />
-          </Route>
-          <Route exact path='/api/courses/:id'>
-            <CourseDetail />
-          </Route>
-          <Redirect exact path='/' to='/api/courses' />
+          <Redirect exact path='/' to='/courses' />
+          <Route exact path='/courses' component={Courses} />
+          <Route exact path='/courses/create' component={CreateCourse} />
+          <Route exact path='/courses/:id' component={CourseDetail} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
