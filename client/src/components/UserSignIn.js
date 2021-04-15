@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const UserSignIn = () => {
   return (
@@ -35,6 +35,6 @@ const UserSignIn = () => {
       </main>
     </>
   )
-};
+}
 
 export default UserSignIn
