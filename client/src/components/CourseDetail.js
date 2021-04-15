@@ -19,6 +19,7 @@ const CourseDetail = () => {
           materialArray.map((material) => <li key={material}>{material}</li>)
         )
       })
+      // .then(console.log(course.User.firstName))
       .catch((error) => console.error(error))
   }, [id])
 
