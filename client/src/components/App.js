@@ -1,12 +1,13 @@
 import React from 'react'
-import Courses from './Courses'
-import Header from './Header'
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch
 } from 'react-router-dom'
+
+import Courses from './Courses'
+import Header from './Header'
 import CourseDetail from './CourseDetail'
 import CreateCourse from './CreateCourse'
 import NotFound from './NotFound'
