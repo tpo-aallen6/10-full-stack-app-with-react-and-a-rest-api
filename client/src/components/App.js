@@ -19,7 +19,9 @@ const App = () => {
           <Route exact path='/api/courses'>
             <Courses />
           </Route>
-          <Route exact path='/api/courses/create' render={() => <CreateCourse />} />
+          <Route exact path='/api/courses/create'>
+            <CreateCourse />
+          </Route>
           <Route exact path='/api/courses/:id'>
             <CourseDetail />
           </Route>
