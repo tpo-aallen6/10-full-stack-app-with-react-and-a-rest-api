@@ -5,12 +5,12 @@ const Header = () => {
   return (
     <>
       <header>
-        <div class='wrap header--flex'>
-          <h1 class='header--logo'>
+        <div className='wrap header--flex'>
+          <h1 className='header--logo'>
             <Link to='/api/courses'>Courses</Link>
           </h1>
           <nav>
-            <ul class='header--signedin'>
+            <ul className='header--signedin'>
               <li>Welcome, **CHANGE TO CURRENTLY LOGGED IN USER**</li>
               <li>
                 <a href='sign-out.html'>Sign Out</a>

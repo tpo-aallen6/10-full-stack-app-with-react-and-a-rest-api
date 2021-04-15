@@ -4,7 +4,7 @@ const UserSignUp = () => {
   return (
     <>
       <main>
-        <div class='form--centered'>
+        <div className='form--centered'>
           <h2>Sign Up</h2>
 
           <form>
@@ -28,11 +28,11 @@ const UserSignUp = () => {
               type='password'
               value=''
             />
-            <button class='button' type='submit'>
+            <button className='button' type='submit'>
               Sign Up
             </button>
             <button
-              class='button button-secondary'
+              className='button button-secondary'
               onclick="event.preventDefault(); location.href='index.html';"
             >
               Cancel

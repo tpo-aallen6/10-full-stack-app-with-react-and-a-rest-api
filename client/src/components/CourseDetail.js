@@ -1,5 +1,3 @@
-/* global fetch */
-
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
@@ -25,7 +23,6 @@ const CourseDetail = () => {
   return (
     <>
       <main>
-        {console.log(course.materialsNeeded)}
         <div className='actions--bar'>
           <div className='wrap'>
             <Link className='button' to={`/api/courses/${id}/update`}>
