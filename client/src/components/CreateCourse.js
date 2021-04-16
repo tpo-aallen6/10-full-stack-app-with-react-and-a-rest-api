@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const CreateCourse = () => {
   return (
@@ -52,12 +52,9 @@ const CreateCourse = () => {
             <button className='button' type='submit'>
               Create Course
             </button>
-            <button
-              className='button button-secondary'
-              onclick="event.preventDefault(); location.href='index.html';"
-            >
+            <Link className='button button-secondary' to='/courses'>
               Cancel
-            </button>
+            </Link>
           </form>
         </div>
       </main>

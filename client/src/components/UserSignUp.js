@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React from 'react'
+import { Link } from 'react-router-dom'
 const UserSignUp = () => {
   return (
     <>
@@ -31,21 +31,18 @@ const UserSignUp = () => {
             <button className='button' type='submit'>
               Sign Up
             </button>
-            <button
-              className='button button-secondary'
-              onclick="event.preventDefault(); location.href='index.html';"
-            >
+            <Link className='button button-secondary' to='/courses'>
               Cancel
-            </button>
+            </Link>
           </form>
           <p>
             Already have a user account? Click here to{' '}
-            <a href='sign-in.html'>sign in</a>!
+            <Link to='/signin'>sign in</Link>!
           </p>
         </div>
       </main>
     </>
   )
-};
+}
 
 export default UserSignUp

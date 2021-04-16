@@ -13,7 +13,7 @@ const Header = () => {
             <ul className='header--signedin'>
               <li>Welcome, **CHANGE TO CURRENTLY LOGGED IN USER**</li>
               <li>
-                <a href='sign-out.html'>Sign Out</a>
+                <Link to='/signout'>Sign Out</Link>
               </li>
             </ul>
           </nav>
