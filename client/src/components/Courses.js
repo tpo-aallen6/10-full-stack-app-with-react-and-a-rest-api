@@ -16,7 +16,6 @@ const Courses = () => {
       <Link
         to={`/courses/${course.id}`}
         className='course--module course--link'
-        href='course-detail.html'
         key={course.id}
       >
         <h2 className='course--label'>Course</h2>
@@ -33,7 +32,6 @@ const Courses = () => {
           <Link
             exact to='/courses/create'
             className='course--module course--add--module'
-            href='create-course.html'
           >
             <span className='course--add--title'>
               <svg
