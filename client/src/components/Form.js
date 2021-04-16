@@ -1,15 +1,21 @@
 import React from 'react'
 
 export default (props) => {
-  const {cancel, errors, submit, submitButtonText, elements} = props
+  const {
+    cancel,
+    errors,
+    submit,
+    submitButtonText,
+    elements,
+  } = props;
 
-  function handleSubmit (event) {
-    event.preventDefault()
-    submit()
+  function handleSubmit(event) {
+    event.preventDefault();
+    submit();
   }
 
-  function handleCancel (event) {
-    event.preventDefault()
+  function handleCancel(event) {
+    event.preventDefault();
     cancel()
   }
 
@@ -17,22 +23,17 @@ export default (props) => {
     <div>
       <ErrorsDisplay errors={errors} />
       <form onSubmit={handleSubmit}>
-        {elements()}
-        <div className='pad-bottom'>
-          <button className='button' type='submit'>
-            {submitButtonText}
-          </button>
-          <button className='button button-secondary' onClick={handleCancel}>
-            Cancel
-          </button>
+        { elements() }
+        <div className="pad-bottom">
+          <button className="button" type="submit">{submitButtonText}</button>
+          <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
     </div>
-  )
+  );
 }
-
 function ErrorsDisplay({ errors }) {
-  let errorsDisplay = null
+  let errorsDisplay = null;
 
   if (errors.length) {
     errorsDisplay = (
@@ -44,8 +45,8 @@ function ErrorsDisplay({ errors }) {
           </ul>
         </div>
       </div>
-    )
+    );
   }
 
-  return errorsDisplay
+  return errorsDisplay;
 }

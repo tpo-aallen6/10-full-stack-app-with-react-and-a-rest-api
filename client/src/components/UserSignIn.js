@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import Form from './Form'
 
 const UserSignIn = () => {
-  const handleCancel = (event) => {
-    event.preventDefault()
-    return <Redirect to='/' />
-  }
 
   return (
     <>
@@ -27,7 +24,6 @@ const UserSignIn = () => {
             </button>
             <button
               class='button button-secondary'
-              onclick={<Redirect to='/' />}
             >
               Cancel
             </button>
