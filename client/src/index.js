@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
 import './styles/global.css'
+import { Provider } from './Context'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 )

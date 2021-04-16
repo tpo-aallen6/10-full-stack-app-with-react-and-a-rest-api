@@ -1,32 +1,76 @@
-import React, { useState } from "react"
+import React, { Component } from 'react'
+import Cookies from 'js-cookie'
 import Data from './Data'
 
-export const CourseContext = React.createContext()
+const Context = React.createContext() 
 
-export const Provider = () => {
-  const [authenticatedUser, setAuthUser] = useState(null)
-  const data = new Data()
+export class Provider extends Component {
 
-  const userSignIn = async (username, password) => {
-    const user = await data.getUser(username, password)
-
-    if (user !== null) {
-      setAuthUser(() => {
-        return {
-          authenticatedUser: user
-        }
-      })
-    }
+  state = {
+    authenticatedUser: Cookies.getJSON('authenticatedUser') || null
   }
 
-  return (
-    <CourseContext value={{
+  constructor() {
+    super()
+    this.data = new Data()
+  }
+
+  render() {
+    const { authenticatedUser } = this.state
+    const value = {
       authenticatedUser,
-      data,
+      data: this.data,
       actions: {
-        signIn: userSignIn
+        signIn: this.signIn,
+        signOut: this.signOut
+      },
+    }
+
+    return (
+      <Context.Provider value={value}>
+        {this.props.children}
+      </Context.Provider>  
+    )
+  }
+
+  
+  signIn = async (emailAddress, password) => {
+    const user = await this.data.getUser(emailAddress, password)
+    if (user !== null) {
+      this.setState(() => {
+        return {
+          authenticatedUser: user,
+        }
+      })
+      const cookieOptions = {
+        expires: 1 // 1 day
       }
-    }}
-    />
-  )
+      Cookies.set('authenticatedUser', JSON.stringify(user), {cookieOptions})
+    }
+    return user
+  }
+
+  signOut = () => {
+    this.setState({ authenticatedUser: null })
+    Cookies.remove('authenticatedUser')
+  }
 }
+
+export const Consumer = Context.Consumer
+
+/**
+ * A higher-order component that wraps the provided component in a Context Consumer component.
+ * @param {class} Component - A React component.
+ * @returns {function} A higher-order component.
+ */
+
+export default function withContext(Component) {
+  return function ContextComponent(props) {
+    return (
+      <Context.Consumer>
+        {context => <Component {...props} context={context} />}
+      </Context.Consumer>
+    )
+  }
+}
+

@@ -1,38 +1,91 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Form from './Form';
 
-const UserSignIn = () => {
-  return (
-    <>
-      <main>
-        <div className='form--centered'>
-          <h2>Sign In</h2>
+export default class UserSignIn extends Component {
+  state = {
+    emailAddress: '',
+    password: '',
+    errors: [],
+  }
 
-          <form>
-            <label for='emailAddress'>Email Address</label>
-            <input
-              id='emailAddress'
-              name='emailAddress'
-              type='email'
-              value=''
-            />
-            <label for='password'>Password</label>
-            <input id='password' name='password' type='password' value='' />
-            <button className='button' type='submit'>
-              Sign In
-            </button>
-            <Link className='button button-secondary' to='/courses'>
-              Cancel
-            </Link>
-          </form>
+  render() {
+    const {
+      emailAddress,
+      password,
+      errors,
+    } = this.state;
+
+    return (
+      <div className="form--centered">
+        <div className="grid-33 centered">
+          <h1>Sign In</h1>
+          <Form 
+            cancel={this.cancel}
+            errors={errors}
+            submit={this.submit}
+            submitButtonText="Sign In"
+            elements={() => (
+              <React.Fragment>
+                <input 
+                  id="emailAddress" 
+                  name="emailAddress" 
+                  type="text"
+                  value={emailAddress} 
+                  onChange={this.change} 
+                  placeholder="Email Address"
+                />
+                <input 
+                  id="password" 
+                  name="password"
+                  type="password"
+                  value={password} 
+                  onChange={this.change} 
+                  placeholder="Password"
+                />                
+              </React.Fragment>
+            )} />
           <p>
-            Don't have a user account? Click here to{' '}
-            <Link to='/signup'>sign up</Link>!
+            Don't have a user account? <Link to="/signup">Click here</Link> to sign up!
           </p>
         </div>
-      </main>
-    </>
-  )
-}
+      </div>
+    );
+  }
 
-export default UserSignIn
+  change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState(() => {
+      return {
+        [name]: value
+      };
+    });
+  }
+
+  submit = () => {
+    const { context } = this.props;
+    const { from } = this.props.location.state || { from: { pathname: '/' } }; // original had pathname: '/authenticated'
+    const { emailAddress, password } = this.state;
+
+    context.actions.signIn(emailAddress, password)
+      .then((user) => {
+        if (user === null) {
+          this.setState(() => {
+            return { errors: [ 'Sign-in was unsuccessful' ] };
+          });
+        } else {
+          this.props.history.push(from);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        this.props.history.push('/error');
+      });
+  }
+
+  cancel = () => {
+    this.props.history.push('/');
+  }
+}

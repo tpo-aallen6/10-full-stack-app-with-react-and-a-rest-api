@@ -28,7 +28,7 @@ a {
     margin: 0 auto;
     padding: 0 1rem;
 }
-header {
+.header {
     background: #57496e;
     color: #fff;
     padding: 1rem 0;
@@ -78,6 +78,14 @@ header nav a:hover {
     color: #fff;
     font-weight: 700;
     font-size: 1.25rem;
+}
+.signup {
+    color: #fff;
+    margin: 2px;
+}
+.signin {
+    color: #fff;
+    margin: 2px;
 }
 .course--add--module {
     background: #ddd9e4;

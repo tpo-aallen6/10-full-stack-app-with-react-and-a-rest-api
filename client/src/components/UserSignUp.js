@@ -1,48 +1,125 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-const UserSignUp = () => {
-  return (
-    <>
-      <main>
-        <div className='form--centered'>
-          <h2>Sign Up</h2>
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Form from './Form';
 
-          <form>
-            <label for='firstName'>First Name</label>
-            <input id='firstName' name='firstName' type='text' value='' />
-            <label for='lastName'>Last Name</label>
-            <input id='lastName' name='lastName' type='text' value='' />
-            <label for='emailAddress'>Email Address</label>
-            <input
-              id='emailAddress'
-              name='emailAddress'
-              type='email'
-              value=''
-            />
-            <label for='password'>Password</label>
-            <input id='password' name='password' type='password' value='' />
-            <label for='confirmPassword'>Confirm Password</label>
-            <input
-              id='confirmPassword'
-              name='confirmPassword'
-              type='password'
-              value=''
-            />
-            <button className='button' type='submit'>
-              Sign Up
-            </button>
-            <Link className='button button-secondary' to='/courses'>
-              Cancel
-            </Link>
-          </form>
+export default class UserSignUp extends Component {
+  state = {
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    password: '',
+    errors: [],
+  }
+
+  render() {
+    const {
+      firstName,
+      lastName,
+      emailAddress,
+      password,
+      errors,
+    } = this.state;
+
+    return (
+      <div className="form--centered">
+        <div className="grid-33 centered">
+          <h1>Sign Up</h1>
+          <Form 
+            cancel={this.cancel}
+            errors={errors}
+            submit={this.submit}
+            submitButtonText="Sign Up"
+            elements={() => (
+              <>
+                <input 
+                  id="firstName" 
+                  name="firstName" 
+                  type="text"
+                  value={firstName} 
+                  onChange={this.change} 
+                  placeholder="First Name"
+                />
+                <input 
+                  id="lastName" 
+                  name="lastName" 
+                  type="text"
+                  value={lastName} 
+                  onChange={this.change} 
+                  placeholder="Last Name"
+                />
+                <input 
+                  id="emailAddress" 
+                  name="emailAddress" 
+                  type="text"
+                  value={emailAddress} 
+                  onChange={this.change} 
+                  placeholder="Email Address"
+                />
+                <input 
+                  id="password" 
+                  name="password"
+                  type="password"
+                  value={password} 
+                  onChange={this.change} 
+                  placeholder="Password"
+                />
+              </>
+            )} />
           <p>
-            Already have a user account? Click here to{' '}
-            <Link to='/signin'>sign in</Link>!
+            Already have a user account? <Link to="/signin">Click here</Link> to sign in!
           </p>
         </div>
-      </main>
-    </>
-  )
-}
+      </div>
+    );
+  }
 
-export default UserSignUp
+  change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState(() => {
+      return {
+        [name]: value
+      };
+    });
+  }
+
+  submit = () => {
+    const { context } = this.props;
+    const {
+      firstName,
+      lastName,
+      emailAddress,
+      password,
+    } = this.state;
+
+    // New user payload
+    const user = {
+      firstName,
+      lastName,
+      emailAddress,
+      password,
+    };
+
+    context.data.createUser(user)
+      .then( errors => {
+        if (errors.length) {
+          this.setState({ errors });
+        } else {
+          context.actions.signIn(emailAddress, password)
+            .then(() => {
+              this.props.history.push('/authenticated');    
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push('/error');
+      });
+  
+  }
+
+  cancel = () => {
+   this.props.history.push('/');
+  }
+}
