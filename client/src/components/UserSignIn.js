@@ -1,12 +1,17 @@
 import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
 
 const UserSignIn = () => {
+  const handleCancel = (event) => {
+    event.preventDefault()
+    return <Redirect to='/' />
+  }
+
   return (
     <>
       <main>
         <div class='form--centered'>
           <h2>Sign In</h2>
-
           <form>
             <label for='emailAddress'>Email Address</label>
             <input
@@ -22,14 +27,14 @@ const UserSignIn = () => {
             </button>
             <button
               class='button button-secondary'
-              onclick="event.preventDefault(); location.href='index.html';"
+              onclick={<Redirect to='/' />}
             >
               Cancel
             </button>
           </form>
           <p>
-            Don't have a user account? Click here to{' '}
-            <a href='sign-up.html'>sign up</a>!
+            Don't have a user account? Click here to {' '}
+            <Link to='/signup'>Sign Up</Link>!
           </p>
         </div>
       </main>

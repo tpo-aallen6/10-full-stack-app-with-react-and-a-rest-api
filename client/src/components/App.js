@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom'
 import CourseDetail from './CourseDetail'
 import CreateCourse from './CreateCourse'
+import UserSignIn from './UserSignIn'
+import UserSignUp from './UserSignUp'
 
 const App = () => {
   return (
@@ -26,6 +28,12 @@ const App = () => {
             <CourseDetail />
           </Route>
           <Redirect exact path='/' to='/api/courses' />
+          <Route exact path='/signin'>
+            <UserSignIn />
+          </Route>
+          <Route exact path='/signup'>
+            <UserSignUp />
+          </Route>
         </Switch>
       </div>
     </Router>

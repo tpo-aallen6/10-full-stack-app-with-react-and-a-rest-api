@@ -17,6 +17,7 @@ export const Provider = () => {
       })
     }
   }
+
   return (
     <CourseContext value={{
       authenticatedUser,
