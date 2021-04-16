@@ -11,7 +11,7 @@ export default class Header extends React.PureComponent {
           <h1
             className='header--logo'
           >
-            Courses
+            <Link to='/courses'>Courses</Link>
           </h1>
           <nav>
             {

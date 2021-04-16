@@ -17,6 +17,7 @@ export class Provider extends Component {
 
   render() {
     const { authenticatedUser } = this.state
+
     const value = {
       authenticatedUser,
       data: this.data,
@@ -36,6 +37,7 @@ export class Provider extends Component {
   
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password)
+
     if (user !== null) {
       this.setState(() => {
         return {
@@ -45,8 +47,10 @@ export class Provider extends Component {
       const cookieOptions = {
         expires: 1 // 1 day
       }
-      Cookies.set('authenticatedUser', JSON.stringify(user), {cookieOptions})
+
+      Cookies.set('authenticatedUser', JSON.stringify(user), { cookieOptions })
     }
+
     return user
   }
 
