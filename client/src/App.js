@@ -11,8 +11,11 @@ import CourseDetail from './components/CourseDetail'
 import CreateCourse from './components/CreateCourse'
 import UserSignIn from './components/UserSignIn'
 import UserSignUp from './components/UserSignUp'
+import Authenticated from './components/Authenticated';
+
 import withContext from './Context'
 
+const AuthWithContext = withContext(Authenticated);
 const UserSignUpWithContext = withContext(UserSignUp)
 const UserSignInWithContext = withContext(UserSignIn)
 
@@ -33,6 +36,7 @@ export default () => (
         <Redirect exact path='/' to='/api/courses' />
         <Route path='/signin' component={UserSignInWithContext}/>
         <Route path='/signup' component={UserSignUpWithContext} />
+        <Route path='/authenticated' component={AuthWithContext} />
       </Switch>
     </div>
   </Router>
