@@ -14,12 +14,11 @@ export default class UserSignIn extends Component {
       emailAddress,
       password,
       errors,
-    } = this.state
+    } = this.state;
 
-    return (
-      <div className="form--centered">
-        <div className="grid-33 centered">
-          <h1>Sign In</h1>
+  return (
+        <div class='form--centered'>
+          <h2>Sign In</h2>
           <Form 
             cancel={this.cancel}
             errors={errors}
@@ -27,65 +26,57 @@ export default class UserSignIn extends Component {
             submitButtonText="Sign In"
             elements={() => (
               <React.Fragment>
-                <input 
-                  id="emailAddress" 
-                  name="emailAddress" 
-                  type="text"
-                  value={emailAddress} 
-                  onChange={this.change} 
-                  placeholder="Email Address"
-                />
-                <input 
-                  id="password" 
-                  name="password"
-                  type="password"
-                  value={password} 
-                  onChange={this.change} 
-                  placeholder="Password"
-                />                
-              </React.Fragment>
+            <label for='emailAddress'>Email Address</label>
+            <input
+              id='emailAddress'
+              name='emailAddress'
+              type='email'
+              value={emailAddress} 
+              onChange={this.change} 
+            />
+            <label for='password'>Password</label>
+            <input id='password' name='password' type='password' value={password} onChange={this.change} />
+            </React.Fragment>
             )} />
           <p>
-            Don't have a user account? <Link to="/signup">Click here</Link> to sign up!
+            Don't have a user account? Click here to {' '}
+            <Link to='/signup'>Sign Up</Link>!
           </p>
         </div>
-      </div>
-    )
-  }
+  )
+}
 
-  change = (event) => {
-    const name = event.target.name
-    const value = event.target.value
+    change = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
 
-    this.setState(() => {
-      return {
-        [name]: value
-      }
-    })
-  }
+      this.setState(() => {
+        return {
+          [name]: value
+        };
+      });
+    }
 
-  submit = () => {
-    const { context } = this.props
-    const { from } = this.props.location.state || { from: { pathname: '/authenticated' } }
-    const { emailAddress, password } = this.state
+    submit = () => {
+      const { context } = this.props;
+      const { from } = this.props.location.state || { from: { pathname: '/authenticated' } }
+      const { emailAddress, password } = this.state
 
-    context.actions.signIn(emailAddress, password)
-      .then((user) => {
+      context.actions.signIn(emailAddress, password)
+      .then( user => {
         if (user === null) {
-          this.setState(() => {
-            return { errors: [ 'Sign-in was unsuccessful' ] }
-          })
-        } else {
-          this.props.history.push(from)
-        }
+          return { errors: [ 'Sign-in was unsuccessful' ] };
+        }  else {
+          this.props.history.push(from);
+       }
       })
-      .catch((error) => {
-        console.error(error)
-        this.props.history.push('/error')
+      .catch( err => {
+        console.log(err);
+        this.props.history.push('/error');
       })
-  }
+    }
 
-  cancel = () => {
-    this.props.history.push('/')
+    cancel = () => {
+      this.props.history.push('/');
   }
 }

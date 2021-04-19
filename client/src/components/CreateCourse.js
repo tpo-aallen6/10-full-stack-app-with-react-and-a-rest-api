@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const CreateCourse = () => {
   return (
     <>
       <main>
-        <div className='wrap'>
+        <div class='wrap'>
           <h2>Create Course</h2>
-          <div className='validation--errors'>
+          <div class='validation--errors'>
             <h3>Validation Errors</h3>
             <ul>
               <li>Please provide a value for "Title"</li>
@@ -15,7 +15,7 @@ const CreateCourse = () => {
             </ul>
           </div>
           <form>
-            <div className='main--flex'>
+            <div class='main--flex'>
               <div>
                 <label for='courseTitle'>Course Title</label>
                 <input
@@ -49,12 +49,15 @@ const CreateCourse = () => {
                 <textarea id='materialsNeeded' name='materialsNeeded' />
               </div>
             </div>
-            <button className='button' type='submit'>
+            <button class='button' type='submit'>
               Create Course
             </button>
-            <Link className='button button-secondary' to='/courses'>
+            <button
+              class='button button-secondary'
+              onclick="event.preventDefault(); location.href='index.html';"
+            >
               Cancel
-            </Link>
+            </button>
           </form>
         </div>
       </main>

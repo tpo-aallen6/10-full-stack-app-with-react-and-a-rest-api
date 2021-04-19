@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 const UpdateCourse = () => {
+  const [course, setCourse] = useState({})
+  const [materials, setMaterials] = useState([])
+  const { id } = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/courses/${id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        setCourse(json.course[0])
+        const materialArray = json.course[0].materialsNeeded.split('*')
+        materialArray.shift()
+        setMaterials(
+          materialArray.map((material) => <li key={material}>{material}</li>)
+        )
+      })
+      // .then(console.log(course.User.firstName))
+      .catch((error) => console.error(error))
+  }, [id])
+
   return (
     <>
       <main>
-        <div className='wrap'>
+        <div class='wrap'>
           <h2>Update Course</h2>
           <form>
-            <div className='main--flex'>
+            <div class='main--flex'>
               <div>
                 <label for='courseTitle'>Course Title</label>
                 <input
@@ -81,11 +101,11 @@ const UpdateCourse = () => {
                 </textarea>
               </div>
             </div>
-            <button className='button' type='submit'>
+            <button class='button' type='submit'>
               Update Course
             </button>
             <button
-              className='button button-secondary'
+              class='button button-secondary'
               onclick="event.preventDefault(); location.href='index.html';"
             >
               Cancel

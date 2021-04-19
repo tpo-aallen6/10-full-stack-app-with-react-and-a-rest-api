@@ -5,8 +5,7 @@ const UserSignOut = ({ context }) => {
   useEffect(() => context.actions.signOut())
 
   return (
-      <Redirect to='/' />
+    <Redirect to='/' />
   )
 }
-
 export default UserSignOut
