@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom'
 
 const UpdateCourse = () => {
+  const [course, setCourse] = useState({})
+  const [materials, setMaterials] = useState([])
+  const { id } = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/courses/${id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        setCourse(json.course[0])
+        const materialArray = json.course[0].materialsNeeded.split('*')
+        materialArray.shift()
+        setMaterials(
+          materialArray.map((material) => <li key={material}>{material}</li>)
+        )
+      })
+      // .then(console.log(course.User.firstName))
+      .catch((error) => console.error(error))
+  }, [id])
+
+
   return (
     <>
       <main>
