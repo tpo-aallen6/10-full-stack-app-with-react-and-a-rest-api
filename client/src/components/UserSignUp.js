@@ -103,7 +103,7 @@ submit = () => {
       console.log(`${firstName} is successfully signed up and authenticated!`);
     }
   })
-  .catch( err => { // handle rejected promises
+  .catch( err => {
     console.log(err);
     this.props.history.push('/error');
   })

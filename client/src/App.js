@@ -18,11 +18,12 @@ import withContext from './Context'
 const AuthWithContext = withContext(Authenticated);
 const UserSignUpWithContext = withContext(UserSignUp)
 const UserSignInWithContext = withContext(UserSignIn)
+const HeaderWithContext = withContext(Header)
 
 export default () => (
   <Router>
     <div>
-      <Header />
+      <HeaderWithContext />
       <Switch>
         <Route exact path='/api/courses'>
           <Courses />
