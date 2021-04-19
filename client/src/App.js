@@ -25,16 +25,16 @@ export default () => (
     <div>
       <HeaderWithContext />
       <Switch>
-        <Route exact path='/api/courses'>
+        <Route exact path='/courses'>
           <Courses />
         </Route>
-        <Route exact path='/api/courses/create'>
+        <Route exact path='/courses/create'>
           <CreateCourse />
         </Route>
-        <Route exact path='/api/courses/:id'>
+        <Route exact path='/courses/:id'>
           <CourseDetail />
         </Route>
-        <Redirect exact path='/' to='/api/courses' />
+        <Redirect exact path='/' to='/courses' />
         <Route path='/signin' component={UserSignInWithContext}/>
         <Route path='/signup' component={UserSignUpWithContext} />
         <Route path='/authenticated' component={AuthWithContext} />

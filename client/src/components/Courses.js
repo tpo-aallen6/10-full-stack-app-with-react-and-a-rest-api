@@ -16,7 +16,7 @@ const Courses = () => {
   const renderedCourses = courses.map((course) => {
     return (
       <Link
-        to={`/api/courses/${course.id}`}
+        to={`/courses/${course.id}`}
         className='course--module course--link'
         href='course-detail.html'
         key={course.id}
@@ -33,7 +33,7 @@ const Courses = () => {
         <div className='wrap main--grid'>
           {renderedCourses}
           <Link
-            exact to='/api/courses/create'
+            exact to='/courses/create'
             className='course--module course--add--module'
             href='create-course.html'
           >
