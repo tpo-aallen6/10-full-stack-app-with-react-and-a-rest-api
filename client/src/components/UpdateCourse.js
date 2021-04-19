@@ -21,7 +21,6 @@ const UpdateCourse = () => {
       .catch((error) => console.error(error))
   }, [id])
 
-
   return (
     <>
       <main>
