@@ -6,6 +6,7 @@ const CourseDetail = ({ context }) => {
   const [course, setCourse] = useState({})
   const [courseOwner, setCourseOwner] = useState('')
   const [buttonDisplay, setButtonDisplay] = useState('')
+  const [ownerEmail, setOwnerEmail] = useState('')
   const { id } = useParams()
 
   const authUser = context.authenticatedUser
@@ -16,33 +17,29 @@ const CourseDetail = ({ context }) => {
       .then((json) => {
         setCourse(json.course[0])
         setCourseOwner(json.course[0].User)
+        setOwnerEmail(json.course[0].User.emailAddress)
       })
       .catch((error) => console.error(error))
   }, [id])
 
-  useEffect(() => {
-    console.log(authUser)
-    if (authUser != null && (courseOwner.emailAddress === authUser.user[0].emailAddress)) {
-      setButtonDisplay(
-        <React.Fragment>
-          <Link className='button' to={`/courses/${id}/update`}>
-            Update Course
-          </Link>
-          <Link className='button' to={`/courses/${id}/delete`}>
-            Delete Course
-          </Link>
-        </React.Fragment>
-      )
-    } else {
-      setButtonDisplay(null)
-    }
-  }, [])
   return (
     <>
       <main>
         <div className='actions--bar'>
           <div className='wrap'>
-            {buttonDisplay}
+            {authUser != null && (authUser.user[0].emailAddress === courseOwner.emailAddress )
+              ? <React.Fragment> 
+             <Link className='button' to={`/courses/${id}/update`}>
+               Update Course
+             </Link>
+             <Link className='button' to={`/courses/${id}/delete`}>
+               Delete Course
+             </Link>
+             </React.Fragment>
+              :
+              null
+            }
+
             <Link className='button button-secondary' to='/courses'>
               Return to List
             </Link>
