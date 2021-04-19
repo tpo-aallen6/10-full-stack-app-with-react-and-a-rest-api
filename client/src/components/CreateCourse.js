@@ -1,7 +1,9 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 const CreateCourse = () => {
+  const history = useHistory()
+
   return (
     <>
       <main>
@@ -17,7 +19,7 @@ const CreateCourse = () => {
           <form>
             <div class='main--flex'>
               <div>
-                <label for='courseTitle'>Course Title</label>
+                <label htmlFor='courseTitle'>Course Title</label>
                 <input
                   id='courseTitle'
                   name='courseTitle'
@@ -25,7 +27,7 @@ const CreateCourse = () => {
                   value=''
                 />
 
-                <label for='courseAuthor'>Course Author</label>
+                <label htmlFor='courseAuthor'>Course Author</label>
                 <input
                   id='courseAuthor'
                   name='courseAuthor'
@@ -33,11 +35,11 @@ const CreateCourse = () => {
                   value='Joe Smith'
                 />
 
-                <label for='courseDescription'>Course Description</label>
+                <label htmlFor='courseDescription'>Course Description</label>
                 <textarea id='courseDescription' name='courseDescription' />
               </div>
               <div>
-                <label for='estimatedTime'>Estimated Time</label>
+                <label htmlFor='estimatedTime'>Estimated Time</label>
                 <input
                   id='estimatedTime'
                   name='estimatedTime'
@@ -45,19 +47,19 @@ const CreateCourse = () => {
                   value=''
                 />
 
-                <label for='materialsNeeded'>Materials Needed</label>
+                <label htmlFor='materialsNeeded'>Materials Needed</label>
                 <textarea id='materialsNeeded' name='materialsNeeded' />
               </div>
             </div>
             <button class='button' type='submit'>
               Create Course
             </button>
-            <button
+            <Link
               class='button button-secondary'
-              onclick="event.preventDefault(); location.href='index.html';"
+              to='/'
             >
               Cancel
-            </button>
+            </Link>
           </form>
         </div>
       </main>

@@ -29,7 +29,7 @@ const UpdateCourse = () => {
           <form>
             <div class='main--flex'>
               <div>
-                <label for='courseTitle'>Course Title</label>
+                <label htmlFor='courseTitle'>Course Title</label>
                 <input
                   id='courseTitle'
                   name='courseTitle'
@@ -37,7 +37,7 @@ const UpdateCourse = () => {
                   value='Build a Basic Bookcase'
                 />
 
-                <label for='courseAuthor'>Course Author</label>
+                <label htmlFor='courseAuthor'>Course Author</label>
                 <input
                   id='courseAuthor'
                   name='courseAuthor'
@@ -45,7 +45,7 @@ const UpdateCourse = () => {
                   value='Joe Smith'
                 />
 
-                <label for='courseDescription'>Course Description</label>
+                <label htmlFor='courseDescription'>Course Description</label>
                 <textarea id='courseDescription' name='courseDescription'>
                   High-end furniture projects are great to dream about. But
                   unless you have a well-equipped shop and some serious
@@ -54,7 +54,7 @@ const UpdateCourse = () => {
                   furniture needs to be a museum showpiece, though. Often a
                   simple design does the job just as well and the experience
                   gained in completing it goes a long way toward making the next
-                  project even better.&#13;&#13;Our pine bookcase, for example,
+                  project even better.&#13;&#13;Our pine bookcase, htmlFor example,
                   features simple construction and it's designed to be built
                   with basic woodworking tools. Yet, the finished project is a
                   worthy and useful addition to any room of the house. While
@@ -67,7 +67,7 @@ const UpdateCourse = () => {
                   4 and 1 x 10 common pine and 1/4-in.-thick lauan plywood.
                   Assembly is quick and easy with glue and nails, and when
                   you're done with construction you have the option of a painted
-                  or clear finish.&#13;&#13;As for basic tools, you'll need a
+                  or clear finish.&#13;&#13;As htmlFor basic tools, you'll need a
                   portable circular saw, hammer, block plane, combination
                   square, tape measure, metal rule, two clamps, nail set and
                   putty knife. Other supplies include glue, nails, sandpaper,
@@ -82,7 +82,7 @@ const UpdateCourse = () => {
                 </textarea>
               </div>
               <div>
-                <label for='estimatedTime'>Estimated Time</label>
+                <label htmlFor='estimatedTime'>Estimated Time</label>
                 <input
                   id='estimatedTime'
                   name='estimatedTime'
@@ -90,7 +90,7 @@ const UpdateCourse = () => {
                   value='14 hours'
                 />
 
-                <label for='materialsNeeded'>Materials Needed</label>
+                <label htmlFor='materialsNeeded'>Materials Needed</label>
                 <textarea id='materialsNeeded' name='materialsNeeded'>
                   * 1/2 x 3/4 inch parting strip&#13;&#13;* 1 x 2 common
                   pine&#13;&#13;* 1 x 4 common pine&#13;&#13;* 1 x 10 common
@@ -106,7 +106,7 @@ const UpdateCourse = () => {
             </button>
             <button
               class='button button-secondary'
-              onclick="event.preventDefault(); location.href='index.html';"
+              onClick="event.preventDefault(); location.href='index.html';"
             >
               Cancel
             </button>

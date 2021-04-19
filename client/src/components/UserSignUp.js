@@ -32,11 +32,11 @@ export default class UserSignUp extends Component {
           submitButtonText="Sign Up"
           elements={() => (
             <React.Fragment>
-              <label for='firstName'>First Name</label>
+              <label htmlFor='firstName'>First Name</label>
               <input id='firstName' name='firstName' type='text' value={firstName} onChange={this.change} />
-              <label for='lastName'>Last Name</label>
+              <label htmlFor='lastName'>Last Name</label>
               <input id='lastName' name='lastName' type='text' value={lastName} onChange={this.change} />
-              <label for='emailAddress'>Email Address</label>
+              <label htmlFor='emailAddress'>Email Address</label>
               <input
                 id='emailAddress'
                 name='emailAddress'
@@ -44,9 +44,9 @@ export default class UserSignUp extends Component {
                 value={emailAddress}
                 onChange={this.change}
               />
-              <label for='password'>Password</label>
+              <label htmlFor='password'>Password</label>
               <input id='password' name='password' type='password' value={password} onChange={this.change}  />
-              <label for='confirmPassword'>Confirm Password</label>
+              <label htmlFor='confirmPassword'>Confirm Password</label>
               <input
                 id='confirmPassword'
                 name='confirmPassword'
