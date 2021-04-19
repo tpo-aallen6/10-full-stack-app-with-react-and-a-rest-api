@@ -10,7 +10,7 @@ Collects any props that get passed in a ...rest variable
 export default ({ component: Component, ...rest }) => {
   return ( // The <Consumer> component subscribes PrivateRoute to all the actions and data provided by Context.js
     <Consumer>
-      { context => (
+      {context => (
         <Route
           {...rest}
           render={
@@ -20,7 +20,11 @@ export default ({ component: Component, ...rest }) => {
               )
             :
               (
-                <Redirect to='/signin' />
+                <Redirect to={{
+                  pathname: '/signin',
+                  state: { from: props.location }
+                }}
+                />
               )
         }
         />
