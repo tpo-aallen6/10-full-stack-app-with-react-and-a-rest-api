@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import Form from './Form'
+import { useParams, useHistory } from 'react-router-dom'
 
 const UpdateCourse = (props) => {
   const [course, setCourse] = useState({})
@@ -19,6 +18,7 @@ const UpdateCourse = (props) => {
   const courseMaterialsNeededInput = useRef('')
 
   const authUser = props.context.authenticatedUser
+  const history = useHistory()
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
@@ -61,10 +61,6 @@ const UpdateCourse = (props) => {
     setDescription(courseDescriptionInput.current.value)
     setEstimatedTime(courseEstTimeInput.current.value)
     setMaterialsNeeded(courseMaterialsNeededInput.current.value)
-  }
-
-  const cancel = () => {
-
   }
 
   return (
@@ -132,7 +128,7 @@ const UpdateCourse = (props) => {
             </button>
             <button
               class='button button-secondary'
-              onClick="event.preventDefault(); location.href='index.html';"
+              onClick={(event) => {event.preventDefault(); history.goBack()}}
             >
               Cancel
             </button>

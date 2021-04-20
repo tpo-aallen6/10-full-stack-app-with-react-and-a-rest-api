@@ -1,7 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react'
+import { Link, useParams, useHistory } from 'react-router-dom'
 
-const CreateCourse = () => {
+const CreateCourse = (props) => {
+
+  const [materialsNeeded, setMaterialsNeeded] = useState([])
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [estimatedTime, setEstimatedTime] = useState('')
+  const [errors, setErrors] = useState([])
+
+  const history = useHistory()
+  const authUser = props.context.authenticatedUser
+
+  const courseTitleInput = useRef('')
+  const courseDescriptionInput = useRef('')
+  const courseEstTimeInput = useRef('')
+  const courseMaterialsNeededInput = useRef('')
+
+  const change = () => {
+    setTitle(courseTitleInput.current.value)
+    setDescription(courseDescriptionInput.current.value)
+    setEstimatedTime(courseEstTimeInput.current.value)
+    setMaterialsNeeded(courseMaterialsNeededInput.current.value)
+  }
+
+  const submit = (e) => {
+    e.preventDefault()
+    const { context } = props
+    const course = {
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded
+    }
+
+    context.data.createCourse(course, authUser.emailAddress, authUser.password)
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors)
+        } else {
+          props.history.push('/courses/')
+        }
+      })
+  }
+
   return (
     <>
       <main>
@@ -14,7 +56,7 @@ const CreateCourse = () => {
               <li>Please provide a value for "Description"</li>
             </ul>
           </div>
-          <form>
+          <form onSubmit={submit}>
             <div class='main--flex'>
               <div>
                 <label htmlFor='courseTitle'>Course Title</label>
@@ -22,7 +64,9 @@ const CreateCourse = () => {
                   id='courseTitle'
                   name='courseTitle'
                   type='text'
-                  value=''
+                  ref={courseTitleInput}
+                  value={title}
+                  onChange={change}
                 />
 
                 <label htmlFor='courseAuthor'>Course Author</label>
@@ -30,11 +74,12 @@ const CreateCourse = () => {
                   id='courseAuthor'
                   name='courseAuthor'
                   type='text'
-                  value='Joe Smith'
+                  value={`${authUser.firstName} ${authUser.lastName}`}
+                  readOnly
                 />
 
                 <label htmlFor='courseDescription'>Course Description</label>
-                <textarea id='courseDescription' name='courseDescription' />
+                <textarea id='courseDescription' name='courseDescription' ref={courseDescriptionInput} value={description} onChange={change} />
               </div>
               <div>
                 <label htmlFor='estimatedTime'>Estimated Time</label>
@@ -42,22 +87,24 @@ const CreateCourse = () => {
                   id='estimatedTime'
                   name='estimatedTime'
                   type='text'
-                  value=''
+                  ref={courseEstTimeInput}
+                  value={estimatedTime}
+                  onChange={change}
                 />
 
                 <label htmlFor='materialsNeeded'>Materials Needed</label>
-                <textarea id='materialsNeeded' name='materialsNeeded' />
+                <textarea id='materialsNeeded' name='materialsNeeded' ref={courseMaterialsNeededInput} value={materialsNeeded} onChange={change} />
               </div>
             </div>
             <button class='button' type='submit'>
               Create Course
             </button>
-            <Link
+            <button
               class='button button-secondary'
-              to='/'
+              onClick={(event) => {event.preventDefault(); history.goBack()}}
             >
               Cancel
-            </Link>
+            </button>
           </form>
         </div>
       </main>
