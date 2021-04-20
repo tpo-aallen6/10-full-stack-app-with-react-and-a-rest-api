@@ -1,14 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Form from './Form'
 
-const UpdateCourse = () => {
+const UpdateCourse = (props) => {
   const [course, setCourse] = useState({})
   const [materialsNeeded, setMaterialsNeeded] = useState([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [estimatedTime, setEstimatedTime] = useState('')
+  const [errors, setErrors] = useState([])
+  const [courseAuthor, setCourseAuthor] = useState('')
   const { id } = useParams()
+
+  // useRef variables
+  const courseTitleInput = useRef('')
+  const courseDescriptionInput = useRef('')
+  const courseEstTimeInput = useRef('')
+  const courseMaterialsNeededInput = useRef('')
+
+  const authUser = props.context.authenticatedUser
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
@@ -19,10 +29,41 @@ const UpdateCourse = () => {
         setTitle(json.course[0].title)
         setDescription(json.course[0].description)
         setEstimatedTime(json.course[0].estimatedTime)
+        setCourseAuthor(`${json.course[0].User.firstName} ${json.course[0].User.lastName}`)
       })
       // .then(console.log(course.User.firstName))
       .catch((error) => console.error(error))
   }, [id])
+
+  const submit = () => {
+    const { context } = props;
+    const course = {
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded
+    }
+    
+    context.date.UpdateCourse(course, authUser.emailAddress, authUser.password)
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors)
+        } else {
+          props.history.push('/courses/' + id)
+        }
+      })
+}
+
+  const change = () => {
+    setTitle(courseTitleInput.current.value)
+    setDescription(courseDescriptionInput.current.value)
+    setTime(couserEstTimeInput.current.value)
+    setMaterialsNeeded(courseMaterialsNeededInput.current.value)
+
+  }
+  const cancel = () => {
+
+  }
 
   return (
     <>
@@ -34,10 +75,11 @@ const UpdateCourse = () => {
               <div>
                 <label for='courseTitle'>Course Title</label>
                 <input
-                  id='courseTitle'
-                  name='courseTitle'
+                  id='Title'
+                  name='Title'
                   type='text'
-                  value='Build a Basic Bookcase'
+                  value={title}
+                  ref={courseTitleInput}
                 />
 
                 <label for='courseAuthor'>Course Author</label>
@@ -49,7 +91,7 @@ const UpdateCourse = () => {
                 />
 
                 <label for='courseDescription'>Course Description</label>
-                <textarea id='courseDescription' name='courseDescription'>
+                <textarea id='courseDescription' name='courseDescription' ref={courseDescriptionInput}>
                   {/* {description} */}
                 </textarea>
               </div>
@@ -60,10 +102,11 @@ const UpdateCourse = () => {
                   name='estimatedTime'
                   type='text'
                   value='14 hours'
+                  ref={courseEstTimeInput}
                 />
 
                 <label for='materialsNeeded'>Materials Needed</label>
-                <textarea id='materialsNeeded' name='materialsNeeded'>
+                <textarea id='materialsNeeded' name='materialsNeeded' ref={courseMaterialsNeededInput}>
                   {/* {materialsNeeded} */}
                 </textarea>
               </div>
@@ -82,6 +125,6 @@ const UpdateCourse = () => {
       </main>
     </>
   )
-};
+}
 
 export default UpdateCourse

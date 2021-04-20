@@ -24,6 +24,7 @@ const UserSignOutWithContext = withContext(UserSignOut)
 const HeaderWithContext = withContext(Header)
 const CreateCourseWithContext = withContext(CreateCourse)
 const CourseDetailWithContext = withContext(CourseDetail)
+const UpdateCourseWithContext = withContext(UpdateCourse)
 export default () => (
   <Router>
     <div>
@@ -34,7 +35,7 @@ export default () => (
         </Route>
         <PrivateRoute exact path='/courses/create' component={CreateCourseWithContext} />
         <Route exact path='/courses/:id' component={CourseDetailWithContext} />
-        <Route exact path='/courses/:id/update' component={UpdateCourse} />
+        <Route exact path='/courses/:id/update' component={UpdateCourseWithContext} />
         <Redirect exact path='/' to='/courses' />
         <Route path='/signin' component={UserSignInWithContext} />
         <Route path='/signup' component={UserSignUpWithContext} />
