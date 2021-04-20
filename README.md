@@ -7,4 +7,4 @@
 * CD to the client folder and run npm install, then npm start to start the client.
 * The API runs on localhost:3000 and the client runs on localhost:5000.
 
-This app allows a user to sign up, sign in, sign out, and perform basic CRUD operations on the database.
+This app allows a user to sign up, sign in, sign out, and perform basic CRUD operations on the courses table in the database when authorized.
