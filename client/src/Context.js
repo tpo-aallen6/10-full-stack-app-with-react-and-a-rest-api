@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import Data from './Data'
 
-const Context = React.createContext() 
+const Context = React.createContext(); 
 
 export class Provider extends Component {
 
   state = {
     authenticatedUser: null
-  }
+  };
 
   constructor() {
-    super()
-    this.data = new Data()
+    super();
+    this.data = new Data();
   }
 
   render() {
-    const { authenticatedUser } = this.state
+    const { authenticatedUser } = this.state;
 
     const value = {
       authenticatedUser,
@@ -24,8 +24,7 @@ export class Provider extends Component {
         signIn: this.signIn,
         signOut: this.signOut
       }
-    }
-
+    };
     return (
       <Context.Provider value={value}>
         {this.props.children}
@@ -36,24 +35,23 @@ export class Provider extends Component {
   
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password)
-
     if (user !== null) {
+      user.password = password
       this.setState(() => {
         return {
           authenticatedUser: user,
-        }
-      })
-    }
-
-    return user
+        };
+    })
   }
+  return user
+}
 
   signOut = () => {
     this.setState({ authenticatedUser: null })
   }
 }
 
-export const Consumer = Context.Consumer
+export const Consumer = Context.Consumer;
 
 /**
  * A higher-order component that wraps the provided component in a Context Consumer component.
@@ -67,6 +65,6 @@ export default function withContext(Component) {
       <Context.Consumer>
         {context => <Component {...props} context={context} />}
       </Context.Consumer>
-    )
+    );
   }
 }

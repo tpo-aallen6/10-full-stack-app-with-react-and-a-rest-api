@@ -27,15 +27,15 @@ const CourseDetail = ({ context }) => {
       <main>
         <div className='actions--bar'>
           <div className='wrap'>
-            {authUser != null && (authUser.user[0].emailAddress === courseOwner.emailAddress)
-              ? <>
-                  <Link className='button' to={`/courses/${id}/update`}>
-                    Update Course
-                  </Link>
-                  <Link className='button' to={`/courses/${id}/delete`}>
-                    Delete Course
-                  </Link>
-                </>
+            {authUser != null && (authUser.emailAddress === courseOwner.emailAddress)
+              ? <React.Fragment> 
+             <Link className='button' to={`/courses/${id}/update`}>
+               Update Course
+             </Link>
+             <Link className='button' to={`/courses/${id}/delete`}>
+               Delete Course
+             </Link>
+             </React.Fragment>
               :
               null
             }
