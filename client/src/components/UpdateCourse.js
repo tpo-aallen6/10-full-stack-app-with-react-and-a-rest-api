@@ -4,7 +4,10 @@ import Form from './Form'
 
 const UpdateCourse = () => {
   const [course, setCourse] = useState({})
-  const [materials, setMaterials] = useState([])
+  const [materialsNeeded, setMaterialsNeeded] = useState([])
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [estimatedTime, setEstimatedTime] = useState('')
   const { id } = useParams()
 
   useEffect(() => {
@@ -12,11 +15,10 @@ const UpdateCourse = () => {
       .then((response) => response.json())
       .then((json) => {
         setCourse(json.course[0])
-        const materialArray = json.course[0].materialsNeeded.split('*')
-        materialArray.shift()
-        setMaterials(
-          materialArray.map((material) => <li key={material}>{material}</li>)
-        )
+        setMaterialsNeeded(json.course[0].materialsNeeded)
+        setTitle(json.course[0].title)
+        setDescription(json.course[0].description)
+        setEstimatedTime(json.course[0].estimatedTime)
       })
       // .then(console.log(course.User.firstName))
       .catch((error) => console.error(error))
