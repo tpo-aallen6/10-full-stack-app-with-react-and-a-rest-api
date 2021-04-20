@@ -25,7 +25,6 @@ export default class Data {
     if (response.status === 200) {
       return response.json()
         .then((data) => {
-          console.log(data)
           return data.user[0]
         })
     } else if (response.status === 401) {
@@ -49,7 +48,6 @@ export default class Data {
   }
 
   async updateCourse (course, emailAddress, password) {
-    console.log(course)
     const response = await this.api('/courses/' + course.id, 'PUT', course, true, { emailAddress, password })
     if (response.status === 204) {
       return []

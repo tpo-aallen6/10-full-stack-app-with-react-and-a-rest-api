@@ -20,7 +20,7 @@ export default class UserSignUp extends Component {
       password,
       confirmPassword,
       errors
-    } = this.state;
+    } = this.state
 
     return (
       <div class='form--centered'>
@@ -104,7 +104,7 @@ export default class UserSignUp extends Component {
       lastName,
       emailAddress,
       password
-    } = this.state;
+    } = this.state
 
     const user = {
       firstName,
@@ -112,10 +112,6 @@ export default class UserSignUp extends Component {
       emailAddress,
       password
     }
-
-    console.log(context)
-    console.log(this.props)
-    console.log(this.state)
 
     context.data.createUser(user)
     .then(errors => {
@@ -129,7 +125,6 @@ export default class UserSignUp extends Component {
       }
     })
     .catch( err => {
-      console.log(err);
       this.props.history.push('/error')
     })
   }
