@@ -27,7 +27,7 @@ const CourseDetail = ({ context }) => {
       <main>
         <div className='actions--bar'>
           <div className='wrap'>
-            {authUser != null && (authUser.user[0].emailAddress === courseOwner.emailAddress )
+            {authUser != null && (authUser.emailAddress === courseOwner.emailAddress )
               ? <React.Fragment> 
              <Link className='button' to={`/courses/${id}/update`}>
                Update Course

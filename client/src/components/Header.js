@@ -14,8 +14,7 @@ export default class Header extends React.PureComponent {
             {authUser
                ? <React.Fragment>
                    <ul className='header--signedin'></ul>
-                   <span>Welcome, {authUser.user[0].firstName}!</span>
-                   {console.log(authUser.user[0].firstName)}
+                   <span>Welcome, {authUser.firstName}!</span>
                    <Link to='/signout'> Sign Out
                    </Link>
                  </React.Fragment>

@@ -35,18 +35,19 @@ const UpdateCourse = (props) => {
       .catch((error) => console.error(error))
   }, [id])
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault()
     const { context } = props
     const course = {
+      id,
       title,
       description,
       estimatedTime,
       materialsNeeded
     }
 
-    context.date.UpdateCourse(course, authUser.emailAddress, authUser.password)
+    context.data.updateCourse(course, authUser.emailAddress, authUser.password)
       .then((errors) => {
-
         if (errors.length) {
           setErrors(errors)
         } else {
@@ -71,19 +72,20 @@ const UpdateCourse = (props) => {
       <main>
         <div class='wrap'>
           <h2>Update Course</h2>
-          <form>
+          <form onSubmit={submit}>
             <div class='main--flex'>
               <div>
-                <label for='courseTitle'>Course Title</label>
+                <label htmlFor='courseTitle'>Course Title</label>
                 <input
                   id='Title'
                   name='Title'
                   type='text'
                   value={title}
                   ref={courseTitleInput}
+                  onChange={change}
                 />
 
-                <label for='courseAuthor'>Course Author</label>
+                <label htmlFor='courseAuthor'>Course Author</label>
                 <input
                   id='courseAuthor'
                   name='courseAuthor'
@@ -91,32 +93,37 @@ const UpdateCourse = (props) => {
                   value={author}
                 />
 
-                <label for='courseDescription'>Course Description</label>
+                <label htmlFor='courseDescription'>Course Description</label>
                 <textarea
                   id='courseDescription'
                   name='courseDescription'
                   ref={courseDescriptionInput}
+                  value={description}
+                  onChange={change}
                 >
-                  {description}
+                  {/* {description} */}
                 </textarea>
               </div>
               <div>
-                <label for='estimatedTime'>Estimated Time</label>
+                <label htmlFor='estimatedTime'>Estimated Time</label>
                 <input
                   id='estimatedTime'
                   name='estimatedTime'
                   type='text'
                   value={estimatedTime}
                   ref={courseEstTimeInput}
+                  onChange={change}
                 />
 
-                <label for='materialsNeeded'>Materials Needed</label>
+                <label htmlFor='materialsNeeded'>Materials Needed</label>
                 <textarea
                   id='materialsNeeded'
                   name='materialsNeeded'
                   ref={courseMaterialsNeededInput}
+                  value={materialsNeeded}
+                  onChange={change}
                 >
-                  {materialsNeeded}
+                  {/* {materialsNeeded} */}
                 </textarea>
               </div>
             </div>
