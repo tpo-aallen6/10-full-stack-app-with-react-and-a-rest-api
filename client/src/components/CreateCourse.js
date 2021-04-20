@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import React, { useState, useRef } from 'react'
+import { useHistory } from 'react-router-dom'
 
 const CreateCourse = (props) => {
-
+  // state variables
   const [materialsNeeded, setMaterialsNeeded] = useState([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -12,6 +12,7 @@ const CreateCourse = (props) => {
   const history = useHistory()
   const authUser = props.context.authenticatedUser
 
+  // useRef variables
   const courseTitleInput = useRef('')
   const courseDescriptionInput = useRef('')
   const courseEstTimeInput = useRef('')
@@ -79,7 +80,13 @@ const CreateCourse = (props) => {
                 />
 
                 <label htmlFor='courseDescription'>Course Description</label>
-                <textarea id='courseDescription' name='courseDescription' ref={courseDescriptionInput} value={description} onChange={change} />
+                <textarea
+                  id='courseDescription'
+                  name='courseDescription'
+                  ref={courseDescriptionInput}
+                  value={description}
+                  onChange={change}
+                />
               </div>
               <div>
                 <label htmlFor='estimatedTime'>Estimated Time</label>
@@ -101,7 +108,7 @@ const CreateCourse = (props) => {
             </button>
             <button
               class='button button-secondary'
-              onClick={(event) => {event.preventDefault(); history.goBack()}}
+              onClick={(event) => { event.preventDefault(); history.push('/') }}
             >
               Cancel
             </button>

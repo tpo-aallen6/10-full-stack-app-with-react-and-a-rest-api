@@ -35,7 +35,13 @@ export default class UserSignIn extends Component {
             onChange={this.change} 
           />
           <label for='password'>Password</label>
-          <input id='password' name='password' type='password' value={password} onChange={this.change} />
+          <input
+            id='password'
+            name='password'
+            type='password'
+            value={password}
+            onChange={this.change}
+          />
           </React.Fragment>
           )} />
         <p>
@@ -60,23 +66,23 @@ export default class UserSignIn extends Component {
     submit = () => {
       const { context } = this.props;
       const { from } = this.props.location.state || { from: { pathname: '/authenticated' } }
-      const { emailAddress, password } = this.state;
+      const { emailAddress, password } = this.state
       context.actions.signIn(emailAddress, password)
       .then( user => {
         if (user === null) {
-          return { errors: [ 'Sign-in was unsuccessful' ] };
+          return { errors: [ 'Sign-in was unsuccessful' ] }
         }  else {
-          this.props.history.push(from);
+          this.props.history.push(from)
        }
       })
       .catch( err => {
-        console.log(err);
-        this.props.history.push('/error');
+        console.log(err)
+        this.props.history.push('/error')
       })
     }
 
     cancel = () => {
-      this.props.history.push('/');
+      this.props.history.push('/')
     }
 }
 

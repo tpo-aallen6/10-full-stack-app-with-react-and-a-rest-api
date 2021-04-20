@@ -1,6 +1,6 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { Consumer } from '../Context';
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { Consumer } from '../Context'
 
 /*
 Destructures and renamed the componenet prop in its parameters.
@@ -30,5 +30,5 @@ export default ({ component: Component, ...rest }) => {
         />
       )}
     </Consumer>
-  );
-};
+  )
+}

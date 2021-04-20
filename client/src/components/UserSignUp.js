@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Form from './Form';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Form from './Form'
 
 export default class UserSignUp extends Component {
   state = {
@@ -9,7 +9,7 @@ export default class UserSignUp extends Component {
     emailAddress: '',
     password: '',
     confirmPassword: '',
-    errors: [],
+    errors: []
   }
 
   render() {
@@ -19,7 +19,7 @@ export default class UserSignUp extends Component {
       emailAddress,
       password,
       confirmPassword,
-      errors,
+      errors
     } = this.state;
 
     return (
@@ -33,9 +33,23 @@ export default class UserSignUp extends Component {
         elements={() => (
           <React.Fragment>
             <label for='firstName'>First Name</label>
-            <input id='firstName' name='firstName' type='text' value={firstName} onChange={this.change} />
+            <input
+              id='firstName'
+              name='firstName'
+              type='text'
+              value={firstName}
+              onChange={this.change}
+            />
+
             <label for='lastName'>Last Name</label>
-            <input id='lastName' name='lastName' type='text' value={lastName} onChange={this.change} />
+            <input
+              id='lastName'
+              name='lastName'
+              type='text'
+              value={lastName}
+              onChange={this.change}
+            />
+
             <label for='emailAddress'>Email Address</label>
             <input
               id='emailAddress'
@@ -44,8 +58,16 @@ export default class UserSignUp extends Component {
               value={emailAddress}
               onChange={this.change}
             />
+
             <label for='password'>Password</label>
-            <input id='password' name='password' type='password' value={password} onChange={this.change}  />
+            <input
+              id='password'
+              name='password'
+              type='password'
+              value={password}
+              onChange={this.change}
+            />
+
             <label for='confirmPassword'>Confirm Password</label>
             <input
               id='confirmPassword'
@@ -65,14 +87,14 @@ export default class UserSignUp extends Component {
   }
 
   change = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+    const name = event.target.name
+    const value = event.target.value
 
     this.setState(() => {
       return {
         [name]: value
-      };
-    });
+      }
+    })
   }
 
   submit = () => {
@@ -81,14 +103,14 @@ export default class UserSignUp extends Component {
       firstName,
       lastName,
       emailAddress,
-      password,
+      password
     } = this.state;
 
     const user = {
       firstName,
       lastName,
       emailAddress,
-      password,
+      password
     }
 
     console.log(context)
@@ -98,7 +120,7 @@ export default class UserSignUp extends Component {
     context.data.createUser(user)
     .then(errors => {
       if (errors.length) {
-        this.setState({ errors });
+        this.setState({ errors })
       } else {
         context.actions.signIn(emailAddress, password)
         .then(() => {
@@ -108,12 +130,12 @@ export default class UserSignUp extends Component {
     })
     .catch( err => {
       console.log(err);
-      this.props.history.push('/error');
+      this.props.history.push('/error')
     })
   }
 
   cancel = () => {
-    this.props.history.push('/');
+    this.props.history.push('/')
   }
 }
 

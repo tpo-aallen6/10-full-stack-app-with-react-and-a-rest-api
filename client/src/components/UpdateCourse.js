@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
 const UpdateCourse = (props) => {
+  // state variables
   const [course, setCourse] = useState({})
   const [materialsNeeded, setMaterialsNeeded] = useState([])
   const [title, setTitle] = useState('')
@@ -31,7 +32,6 @@ const UpdateCourse = (props) => {
         setEstimatedTime(json.course[0].estimatedTime)
         setAuthor(`${json.course[0].User.firstName} ${json.course[0].User.lastName}`)
       })
-      // .then(console.log(course.User.firstName))
       .catch((error) => console.error(error))
   }, [id])
 
@@ -97,7 +97,7 @@ const UpdateCourse = (props) => {
                   value={description}
                   onChange={change}
                 >
-                  {/* {description} */}
+                  {/*  */}
                 </textarea>
               </div>
               <div>
@@ -119,7 +119,7 @@ const UpdateCourse = (props) => {
                   value={materialsNeeded}
                   onChange={change}
                 >
-                  {/* {materialsNeeded} */}
+                  {/*  */}
                 </textarea>
               </div>
             </div>
