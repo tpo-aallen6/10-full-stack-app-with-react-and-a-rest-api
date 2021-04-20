@@ -16,35 +16,35 @@ export default class UserSignIn extends Component {
       errors,
     } = this.state;
 
-  return (
-        <div class='form--centered'>
-          <h2>Sign In</h2>
-          <Form 
-            cancel={this.cancel}
-            errors={errors}
-            submit={this.submit}
-            submitButtonText="Sign In"
-            elements={() => (
-              <React.Fragment>
-            <label for='emailAddress'>Email Address</label>
-            <input
-              id='emailAddress'
-              name='emailAddress'
-              type='email'
-              value={emailAddress} 
-              onChange={this.change} 
-            />
-            <label for='password'>Password</label>
-            <input id='password' name='password' type='password' value={password} onChange={this.change} />
-            </React.Fragment>
-            )} />
-          <p>
-            Don't have a user account? Click here to {' '}
-            <Link to='/signup'>Sign Up</Link>!
-          </p>
-        </div>
-  )
-}
+    return (
+      <div class='form--centered'>
+        <h2>Sign In</h2>
+        <Form 
+          cancel={this.cancel}
+          errors={errors}
+          submit={this.submit}
+          submitButtonText="Sign In"
+          elements={() => (
+            <React.Fragment>
+          <label for='emailAddress'>Email Address</label>
+          <input
+            id='emailAddress'
+            name='emailAddress'
+            type='email'
+            value={emailAddress} 
+            onChange={this.change} 
+          />
+          <label for='password'>Password</label>
+          <input id='password' name='password' type='password' value={password} onChange={this.change} />
+          </React.Fragment>
+          )} />
+        <p>
+          Don't have a user account? Click here to {' '}
+          <Link to='/signup'>Sign Up</Link>!
+        </p>
+      </div>
+    )
+  }
 
     change = (event) => {
       const name = event.target.name;
@@ -77,6 +77,6 @@ export default class UserSignIn extends Component {
 
     cancel = () => {
       this.props.history.push('/');
-  }
+    }
 }
 
