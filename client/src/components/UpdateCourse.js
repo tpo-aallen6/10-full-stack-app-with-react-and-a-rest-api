@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom'
+import Form from './Form'
 
 const UpdateCourse = () => {
   const [course, setCourse] = useState({})
@@ -92,12 +93,7 @@ const UpdateCourse = () => {
 
                 <label for='materialsNeeded'>Materials Needed</label>
                 <textarea id='materialsNeeded' name='materialsNeeded'>
-                  * 1/2 x 3/4 inch parting strip&#13;&#13;* 1 x 2 common
-                  pine&#13;&#13;* 1 x 4 common pine&#13;&#13;* 1 x 10 common
-                  pine&#13;&#13;* 1/4 inch thick lauan plywood&#13;&#13;*
-                  Finishing Nails&#13;&#13;* Sandpaper&#13;&#13;* Wood
-                  Glue&#13;&#13;* Wood Filler&#13;&#13;* Minwax Oil Based
-                  Polyurethane
+                  {materials}
                 </textarea>
               </div>
             </div>
