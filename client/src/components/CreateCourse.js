@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const CreateCourse = () => {
-  const history = useHistory()
-
   return (
     <>
       <main>
