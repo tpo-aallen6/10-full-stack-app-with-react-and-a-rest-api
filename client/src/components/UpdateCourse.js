@@ -9,7 +9,7 @@ const UpdateCourse = (props) => {
   const [description, setDescription] = useState('')
   const [estimatedTime, setEstimatedTime] = useState('')
   const [errors, setErrors] = useState([])
-  const [courseAuthor, setCourseAuthor] = useState('')
+  const [author, setAuthor] = useState('')
   const { id } = useParams()
 
   // useRef variables
@@ -29,38 +29,39 @@ const UpdateCourse = (props) => {
         setTitle(json.course[0].title)
         setDescription(json.course[0].description)
         setEstimatedTime(json.course[0].estimatedTime)
-        setCourseAuthor(`${json.course[0].User.firstName} ${json.course[0].User.lastName}`)
+        setAuthor(`${json.course[0].User.firstName} ${json.course[0].User.lastName}`)
       })
       // .then(console.log(course.User.firstName))
       .catch((error) => console.error(error))
   }, [id])
 
   const submit = () => {
-    const { context } = props;
+    const { context } = props
     const course = {
       title,
       description,
       estimatedTime,
       materialsNeeded
     }
-    
+
     context.date.UpdateCourse(course, authUser.emailAddress, authUser.password)
       .then((errors) => {
+
         if (errors.length) {
           setErrors(errors)
         } else {
           props.history.push('/courses/' + id)
         }
       })
-}
+  }
 
   const change = () => {
     setTitle(courseTitleInput.current.value)
     setDescription(courseDescriptionInput.current.value)
-    setTime(couserEstTimeInput.current.value)
+    setEstimatedTime(courseEstTimeInput.current.value)
     setMaterialsNeeded(courseMaterialsNeededInput.current.value)
-
   }
+
   const cancel = () => {
 
   }
@@ -87,12 +88,16 @@ const UpdateCourse = (props) => {
                   id='courseAuthor'
                   name='courseAuthor'
                   type='text'
-                  value='Joe Smith'
+                  value={author}
                 />
 
                 <label for='courseDescription'>Course Description</label>
-                <textarea id='courseDescription' name='courseDescription' ref={courseDescriptionInput}>
-                  {/* {description} */}
+                <textarea
+                  id='courseDescription'
+                  name='courseDescription'
+                  ref={courseDescriptionInput}
+                >
+                  {description}
                 </textarea>
               </div>
               <div>
@@ -101,13 +106,17 @@ const UpdateCourse = (props) => {
                   id='estimatedTime'
                   name='estimatedTime'
                   type='text'
-                  value='14 hours'
+                  value={estimatedTime}
                   ref={courseEstTimeInput}
                 />
 
                 <label for='materialsNeeded'>Materials Needed</label>
-                <textarea id='materialsNeeded' name='materialsNeeded' ref={courseMaterialsNeededInput}>
-                  {/* {materialsNeeded} */}
+                <textarea
+                  id='materialsNeeded'
+                  name='materialsNeeded'
+                  ref={courseMaterialsNeededInput}
+                >
+                  {materialsNeeded}
                 </textarea>
               </div>
             </div>
