@@ -19,7 +19,6 @@ exports.authenticateUser = async (req, res, next) => {
         .compareSync(credentials.pass, user.password)
 
       if (authenticated) {
-        console.log(`Authentication successful for username: ${user.emailAddress}`)
         req.currentUser = user
       } else {
         message = `Authentication failure for username: ${user.emailAddress}`

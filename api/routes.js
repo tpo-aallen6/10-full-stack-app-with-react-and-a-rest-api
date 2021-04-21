@@ -27,6 +27,10 @@ router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
 
 // POST route that creates a new user
 router.post('/users', asyncHandler(async (req, res) => {
+  if (req.body.password !== req.body.confirmPassword) {
+    req.body.password = null
+  }
+
   try {
     await User.create(req.body)
     res.redirect(201, '/')

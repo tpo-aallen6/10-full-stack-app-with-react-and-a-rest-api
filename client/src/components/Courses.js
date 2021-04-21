@@ -31,7 +31,7 @@ const Courses = () => {
         <div className='wrap main--grid'>
           {renderedCourses}
           <Link
-            exact to='/courses/create'
+            to='/courses/create'
             className='course--module course--add--module'
             href='create-course.html'
           >

@@ -121,7 +121,7 @@ export default class UserSignUp extends Component {
       if (errors.length) {
         this.setState({ errors })
 
-        if (!confirmPassword || password !== confirmPassword) {
+        if (password !== confirmPassword) {
           const newError = [...this.state.errors]
           newError.push('Both passwords must match')
           this.setState({ errors: newError })

@@ -13,10 +13,10 @@ app.use(cors())
 // Setup request body JSON parsing.
 app.use(express.json())
 
-app.use((req, res, next) => {
-  console.log(req.method, req.originalUrl, req.headers, req.body)
-  next()
-})
+// app.use((req, res, next) => {
+//   console.log(req.method, req.originalUrl, req.headers, req.body)
+//   next()
+// })
 
 // Setup a friendly greeting for the root route.
 app.get('/', (req, res) => {
