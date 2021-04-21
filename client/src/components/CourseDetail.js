@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-const CourseDetail = ({ context }) => {
+const CourseDetail = (props) => {
   const [course, setCourse] = useState({})
   const [courseOwner, setCourseOwner] = useState('')
-  const [buttonDisplay, setButtonDisplay] = useState('')
+  const [errors, setErrors] = useState([])
   const [ownerEmail, setOwnerEmail] = useState('')
   const { id } = useParams()
 
-  const authUser = context.authenticatedUser
+  const authUser = props.context.authenticatedUser
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
@@ -22,20 +22,38 @@ const CourseDetail = ({ context }) => {
       .catch((error) => console.error(error))
   }, [id])
 
+  const submit = (e) => {
+    const { context } = props
+    e.preventDefault()
+
+    context.data.deleteCourse(course, authUser.emailAddress, authUser.password)
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors)
+        } else {
+          props.history.push('/')
+        }
+      })
+  }
+
   return (
     <>
       <main>
         <div className='actions--bar'>
           <div className='wrap'>
             {authUser != null && (authUser.emailAddress === courseOwner.emailAddress)
-              ? <React.Fragment> 
+              ? <> 
              <Link className='button' to={`/courses/${id}/update`}>
                Update Course
              </Link>
-             <Link className='button' to={`/courses/${id}/delete`}>
+             <button
+              className='button'
+              type='submit'
+              onClick={submit}
+             >
                Delete Course
-             </Link>
-             </React.Fragment>
+             </button>
+             </>
               :
               null
             }
