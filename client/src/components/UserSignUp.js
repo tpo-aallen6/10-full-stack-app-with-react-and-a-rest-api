@@ -144,4 +144,3 @@ export default class UserSignUp extends Component {
     this.props.history.push('/')
   }
 }
-
