@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
+/**
+ * functional component that renders fields to update a course
+ * uses hooks to manage state
+ */
 const UpdateCourse = (props) => {
   // state variables
   const [course, setCourse] = useState({})
@@ -35,6 +39,9 @@ const UpdateCourse = (props) => {
       .catch((error) => console.error(error))
   }, [id])
 
+  /**
+   * submit function that submits a PUT request to update a course 
+   */
   const submit = (e) => {
     e.preventDefault()
     const { context } = props
@@ -140,6 +147,9 @@ const UpdateCourse = (props) => {
   )
 }
 
+/**
+ * function that renders errors if any exist
+ */
 function ErrorsDisplay ({ errors }) {
   let errorsDisplay = null
 

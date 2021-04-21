@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+/**
+ * class component that renders a header
+ * sign in/sign up or sign out displays based on user sign in status
+ */
 export default class Header extends React.PureComponent {
   render () {
     const { context } = this.props

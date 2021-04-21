@@ -3,10 +3,8 @@ import { Route, Redirect } from 'react-router-dom'
 import { Consumer } from '../Context'
 
 /*
-Destructures and renamed the componenet prop in its parameters.
-Collects any props that get passed in a ...rest variable
+* functional component that requires user login before allowing access to the route
 */
-
 export default ({ component: Component, ...rest }) => {
   return ( // The <Consumer> component subscribes PrivateRoute to all the actions and data provided by Context.js
     <Consumer>

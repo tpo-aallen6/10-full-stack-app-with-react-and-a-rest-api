@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Form from './Form'
 
+/**
+ * class component that renders the sign up page
+ */
 export default class UserSignUp extends Component {
   state = {
     firstName: '',
@@ -97,7 +100,9 @@ export default class UserSignUp extends Component {
     })
   }
 
-  // 
+  /**
+   * submit function that sends a POST request to create a new user on submit
+  */
   submit = () => {
     const { context } = this.props;
     const {

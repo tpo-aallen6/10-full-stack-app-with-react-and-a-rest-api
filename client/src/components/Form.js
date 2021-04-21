@@ -1,5 +1,8 @@
 import React from 'react'
 
+/**
+ * functional component that renders a form for use in user creation
+ */
 export default (props) => {
   const {
     cancel,
@@ -33,6 +36,9 @@ export default (props) => {
   )
 }
 
+/**
+ * function that renders errors if they exist when creating a new user
+ */
 function ErrorsDisplay ({ errors }) {
   let errorsDisplay = null
 

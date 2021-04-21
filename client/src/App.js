@@ -1,6 +1,4 @@
 import React from 'react'
-import Courses from './components/Courses'
-import Header from './components/Header'
 import {
   BrowserRouter as Router,
   Redirect,
@@ -10,7 +8,9 @@ import {
 
 import Authenticated from './components/Authenticated'
 import CourseDetail from './components/CourseDetail'
+import Courses from './components/Courses'
 import CreateCourse from './components/CreateCourse'
+import Header from './components/Header'
 import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute'
 import UpdateCourse from './components/UpdateCourse'
@@ -19,6 +19,7 @@ import UserSignOut from './components/UserSignOut'
 import UserSignUp from './components/UserSignUp'
 import withContext from './Context'
 
+// components that use context for authentication
 const AuthWithContext = withContext(Authenticated)
 const CourseDetailWithContext = withContext(CourseDetail)
 const CreateCourseWithContext = withContext(CreateCourse)

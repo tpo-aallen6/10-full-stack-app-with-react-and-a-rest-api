@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+/**
+ * functional component that fetches a list of all courses from
+ * the db and renders them and a create course button to the display
+ */
 const Courses = () => {
   const [courses, setCourses] = useState([])
 

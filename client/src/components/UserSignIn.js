@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Form from './Form'
 
+/**
+ * class component that renders the sign in page
+ */
 export default class UserSignIn extends Component {
   state = {
     emailAddress: '',

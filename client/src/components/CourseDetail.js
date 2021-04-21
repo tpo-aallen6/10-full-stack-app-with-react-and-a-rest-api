@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { Link, useParams } from 'react-router-dom'
 
+/**
+ * functional component that uses hooks to update state
+ * fetches a single course from the API and renders the details
+ */
 const CourseDetail = (props) => {
   const [course, setCourse] = useState({})
   const [courseOwner, setCourseOwner] = useState('')
@@ -22,6 +26,10 @@ const CourseDetail = (props) => {
       .catch((error) => console.error(error))
   }, [id])
 
+  /**
+   * submit function that when the delete course button is clicked a
+   * DELETE request is sent to the API to remove the course from the db
+   */
   const submit = (e) => {
     const { context } = props
     e.preventDefault()

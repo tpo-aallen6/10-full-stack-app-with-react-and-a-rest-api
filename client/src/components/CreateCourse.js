@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 // import ReactMarkdown from 'react-markdown'
 
+/**
+ * functional component that creates a course using hooks for state
+ */
 const CreateCourse = (props) => {
   // state variables
   const [materialsNeeded, setMaterialsNeeded] = useState('')
@@ -26,6 +29,9 @@ const CreateCourse = (props) => {
     setMaterialsNeeded(courseMaterialsNeededInput.current.value)
   }
 
+  /**
+   * submit function that sends a POST request to create a new course on click
+   */
   const submit = (e) => {
     e.preventDefault()
     const { context } = props
@@ -123,7 +129,9 @@ const CreateCourse = (props) => {
     </>
   )
 }
-
+ /**
+  * function that renders errors if any exist
+  */
 function ErrorsDisplay ({ errors }) {
   let errorsDisplay = null
 
