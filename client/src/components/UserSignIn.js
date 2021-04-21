@@ -17,7 +17,7 @@ export default class UserSignIn extends Component {
     } = this.state;
 
     return (
-      <div class='form--centered'>
+      <div className='form--centered'>
         <h2>Sign In</h2>
         <Form 
           cancel={this.cancel}
@@ -26,7 +26,7 @@ export default class UserSignIn extends Component {
           submitButtonText="Sign In"
           elements={() => (
             <React.Fragment>
-          <label for='emailAddress'>Email Address</label>
+          <label htmlFor='emailAddress'>Email Address</label>
           <input
             id='emailAddress'
             name='emailAddress'
@@ -34,7 +34,7 @@ export default class UserSignIn extends Component {
             value={emailAddress} 
             onChange={this.change} 
           />
-          <label for='password'>Password</label>
+          <label htmlFor='password'>Password</label>
           <input
             id='password'
             name='password'

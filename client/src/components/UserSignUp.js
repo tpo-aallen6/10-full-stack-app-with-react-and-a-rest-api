@@ -23,7 +23,7 @@ export default class UserSignUp extends Component {
     } = this.state
 
     return (
-      <div class='form--centered'>
+      <div className='form--centered'>
         <h2>Sign Up</h2>
         <Form 
         cancel={this.cancel}
@@ -31,8 +31,8 @@ export default class UserSignUp extends Component {
         submit={this.submit}
         submitButtonText="Sign Up"
         elements={() => (
-          <React.Fragment>
-            <label for='firstName'>First Name</label>
+          <>
+            <label htmlFor='firstName'>First Name</label>
             <input
               id='firstName'
               name='firstName'
@@ -41,7 +41,7 @@ export default class UserSignUp extends Component {
               onChange={this.change}
             />
 
-            <label for='lastName'>Last Name</label>
+            <label htmlFor='lastName'>Last Name</label>
             <input
               id='lastName'
               name='lastName'
@@ -50,7 +50,7 @@ export default class UserSignUp extends Component {
               onChange={this.change}
             />
 
-            <label for='emailAddress'>Email Address</label>
+            <label htmlFor='emailAddress'>Email Address</label>
             <input
               id='emailAddress'
               name='emailAddress'
@@ -59,7 +59,7 @@ export default class UserSignUp extends Component {
               onChange={this.change}
             />
 
-            <label for='password'>Password</label>
+            <label htmlFor='password'>Password</label>
             <input
               id='password'
               name='password'
@@ -68,7 +68,7 @@ export default class UserSignUp extends Component {
               onChange={this.change}
             />
 
-            <label for='confirmPassword'>Confirm Password</label>
+            <label htmlFor='confirmPassword'>Confirm Password</label>
             <input
               id='confirmPassword'
               name='confirmPassword'
@@ -76,7 +76,7 @@ export default class UserSignUp extends Component {
               value={confirmPassword}
               onChange={this.change}
             />
-          </React.Fragment>
+          </>
         )} />
         <p>
           Already have a user account? Click here to{' '}
@@ -103,20 +103,29 @@ export default class UserSignUp extends Component {
       firstName,
       lastName,
       emailAddress,
-      password
+      password,
+      confirmPassword,
     } = this.state
 
     const user = {
       firstName,
       lastName,
       emailAddress,
-      password
+      password,
+      confirmPassword
     }
 
     context.data.createUser(user)
     .then(errors => {
       if (errors.length) {
         this.setState({ errors })
+
+        if (!confirmPassword || password !== confirmPassword) {
+          const newError = [...this.state.errors]
+          newError.push('Both passwords must match')
+          this.setState({ errors: newError })
+          return
+        } 
       } else {
         context.actions.signIn(emailAddress, password)
         .then(() => {
@@ -127,6 +136,7 @@ export default class UserSignUp extends Component {
     .catch( err => {
       this.props.history.push('/error')
     })
+
   }
 
   cancel = () => {

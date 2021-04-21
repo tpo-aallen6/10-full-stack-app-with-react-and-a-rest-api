@@ -66,10 +66,11 @@ const UpdateCourse = (props) => {
   return (
     <>
       <main>
-        <div class='wrap'>
+        <div className='wrap'>
           <h2>Update Course</h2>
+          <ErrorsDisplay errors={errors} />
           <form onSubmit={submit}>
-            <div class='main--flex'>
+            <div className='main--flex'>
               <div>
                 <label htmlFor='courseTitle'>Course Title</label>
                 <input
@@ -123,12 +124,12 @@ const UpdateCourse = (props) => {
                 </textarea>
               </div>
             </div>
-            <button class='button' type='submit'>
+            <button className='button' type='submit'>
               Update Course
             </button>
             <button
-              class='button button-secondary'
-              onClick={(event) => {event.preventDefault(); history.goBack()}}
+              className='button button-secondary'
+              onClick={(event) => { event.preventDefault(); history.goBack() }}
             >
               Cancel
             </button>
@@ -137,6 +138,25 @@ const UpdateCourse = (props) => {
       </main>
     </>
   )
+}
+
+function ErrorsDisplay ({ errors }) {
+  let errorsDisplay = null
+
+  if (errors.length) {
+    errorsDisplay = (
+      <div>
+        <h2 className="validation--errors">Validation errors</h2>
+        <div className="validation-errors">
+          <ul>
+            {errors.map((error, i) => <li key={i}>{error}</li>)}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
+  return errorsDisplay
 }
 
 export default UpdateCourse

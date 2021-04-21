@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
+// import ReactMarkdown from 'react-markdown'
 
 const CreateCourse = (props) => {
   // state variables
-  const [materialsNeeded, setMaterialsNeeded] = useState([])
+  const [materialsNeeded, setMaterialsNeeded] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [estimatedTime, setEstimatedTime] = useState('')
@@ -48,17 +49,11 @@ const CreateCourse = (props) => {
   return (
     <>
       <main>
-        <div class='wrap'>
+        <div className='wrap'>
           <h2>Create Course</h2>
-          <div class='validation--errors'>
-            <h3>Validation Errors</h3>
-            <ul>
-              <li>Please provide a value for "Title"</li>
-              <li>Please provide a value for "Description"</li>
-            </ul>
-          </div>
+          <ErrorsDisplay errors={errors} />
           <form onSubmit={submit}>
-            <div class='main--flex'>
+            <div className='main--flex'>
               <div>
                 <label htmlFor='courseTitle'>Course Title</label>
                 <input
@@ -86,7 +81,9 @@ const CreateCourse = (props) => {
                   ref={courseDescriptionInput}
                   value={description}
                   onChange={change}
-                />
+                >
+                  {/* <ReactMarkdown children={description} /> */}
+                </textarea>
               </div>
               <div>
                 <label htmlFor='estimatedTime'>Estimated Time</label>
@@ -100,14 +97,22 @@ const CreateCourse = (props) => {
                 />
 
                 <label htmlFor='materialsNeeded'>Materials Needed</label>
-                <textarea id='materialsNeeded' name='materialsNeeded' ref={courseMaterialsNeededInput} value={materialsNeeded} onChange={change} />
+                <textarea
+                  id='materialsNeeded'
+                  name='materialsNeeded'
+                  ref={courseMaterialsNeededInput}
+                  value={materialsNeeded}
+                  onChange={change}
+                >
+                  {/* <ReactMarkdown children={materialsNeeded} /> */}
+                </textarea>
               </div>
             </div>
-            <button class='button' type='submit'>
+            <button className='button' type='submit'>
               Create Course
             </button>
             <button
-              class='button button-secondary'
+              className='button button-secondary'
               onClick={(event) => { event.preventDefault(); history.push('/') }}
             >
               Cancel
@@ -117,6 +122,25 @@ const CreateCourse = (props) => {
       </main>
     </>
   )
+}
+
+function ErrorsDisplay ({ errors }) {
+  let errorsDisplay = null
+
+  if (errors.length) {
+    errorsDisplay = (
+      <div>
+        <h2 className="validation--errors">Validation errors</h2>
+        <div className="validation-errors">
+          <ul>
+            {errors.map((error, i) => <li key={i}>{error}</li>)}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
+  return errorsDisplay
 }
 
 export default CreateCourse

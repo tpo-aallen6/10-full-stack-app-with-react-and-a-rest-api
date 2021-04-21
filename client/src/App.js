@@ -7,24 +7,26 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+
+import Authenticated from './components/Authenticated'
 import CourseDetail from './components/CourseDetail'
 import CreateCourse from './components/CreateCourse'
-import UserSignIn from './components/UserSignIn'
-import UserSignUp from './components/UserSignUp'
-import UserSignOut from './components/UserSignOut'
-import Authenticated from './components/Authenticated'
+import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute'
-import withContext from './Context'
 import UpdateCourse from './components/UpdateCourse'
+import UserSignIn from './components/UserSignIn'
+import UserSignOut from './components/UserSignOut'
+import UserSignUp from './components/UserSignUp'
+import withContext from './Context'
 
 const AuthWithContext = withContext(Authenticated)
-const UserSignUpWithContext = withContext(UserSignUp)
+const CourseDetailWithContext = withContext(CourseDetail)
+const CreateCourseWithContext = withContext(CreateCourse)
+const HeaderWithContext = withContext(Header)
+const UpdateCourseWithContext = withContext(UpdateCourse)
 const UserSignInWithContext = withContext(UserSignIn)
 const UserSignOutWithContext = withContext(UserSignOut)
-const HeaderWithContext = withContext(Header)
-const CreateCourseWithContext = withContext(CreateCourse)
-const CourseDetailWithContext = withContext(CourseDetail)
-const UpdateCourseWithContext = withContext(UpdateCourse)
+const UserSignUpWithContext = withContext(UserSignUp)
 
 export default () => (
   <Router>
@@ -36,12 +38,13 @@ export default () => (
         </Route>
         <PrivateRoute exact path='/courses/create' component={CreateCourseWithContext} />
         <Route exact path='/courses/:id' component={CourseDetailWithContext} />
-        <Route exact path='/courses/:id/update' component={UpdateCourseWithContext} />
+        <PrivateRoute exact path='/courses/:id/update' component={UpdateCourseWithContext} />
         <Redirect exact path='/' to='/courses' />
         <Route path='/signin' component={UserSignInWithContext} />
         <Route path='/signup' component={UserSignUpWithContext} />
         <Route path='/signout' component={UserSignOutWithContext} />
         <PrivateRoute path='/authenticated' component={AuthWithContext} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   </Router>
