@@ -49,17 +49,17 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'A password is required'
+          msg: 'Both passwords must match'
         },
         notEmpty: {
-          msg: 'Please provide a password'
+          msg: 'Password cannot be blank'
         }
       },
       set (val) {
         if (val) {
           const hashedPassword = bcrypt.hashSync(val)
           this.setDataValue('password', hashedPassword)
-        } else {
+        } else if (val === '') {
           this.setDataValue('password', '')
         }
       }
