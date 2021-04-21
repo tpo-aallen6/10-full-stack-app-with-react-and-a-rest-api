@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
 const CourseDetail = (props) => {
@@ -10,11 +10,15 @@ const CourseDetail = (props) => {
   const { id } = useParams()
 
   const authUser = props.context.authenticatedUser
+  const history = useHistory()
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((response) => response.json())
       .then((json) => {
+        if (!json.course[0]) {
+          history.push('/NotFound')
+        }
         setCourse(json.course[0])
         setCourseOwner(json.course[0].User)
         setOwnerEmail(json.course[0].User.emailAddress)

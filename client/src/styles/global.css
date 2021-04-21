@@ -28,6 +28,12 @@ a {
     margin: 0 auto;
     padding: 0 1rem;
 }
+header {
+    background: #57496e;
+    color: #fff;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
 .header {
     background: #57496e;
     color: #fff;
