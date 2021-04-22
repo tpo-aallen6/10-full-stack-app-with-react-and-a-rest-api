@@ -7,7 +7,7 @@ import { useParams, useHistory } from 'react-router-dom'
  */
 const UpdateCourse = (props) => {
   // state variables
-  const [course, setCourse] = useState({})
+  // const [course, setCourse] = useState({})
   const [materialsNeeded, setMaterialsNeeded] = useState([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -29,7 +29,7 @@ const UpdateCourse = (props) => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        setCourse(json.course[0])
+        // setCourse(json.course[0])
         setMaterialsNeeded(json.course[0].materialsNeeded)
         setTitle(json.course[0].title)
         setDescription(json.course[0].description)
@@ -95,6 +95,7 @@ const UpdateCourse = (props) => {
                   name='courseAuthor'
                   type='text'
                   value={author}
+                  readOnly={true}
                 />
 
                 <label htmlFor='courseDescription'>Course Description</label>

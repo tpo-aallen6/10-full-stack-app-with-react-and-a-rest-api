@@ -5,7 +5,7 @@ import { Consumer } from '../Context'
 /*
 * functional component that requires user login before allowing access to the route
 */
-export default ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return ( // The <Consumer> component subscribes PrivateRoute to all the actions and data provided by Context.js
     <Consumer>
       {context => (
@@ -30,3 +30,5 @@ export default ({ component: Component, ...rest }) => {
     </Consumer>
   )
 }
+
+export default PrivateRoute

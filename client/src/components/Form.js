@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * functional component that renders a form for use in user creation
  */
-export default (props) => {
+const Form = (props) => {
   const {
     cancel,
     errors,
@@ -57,3 +57,5 @@ function ErrorsDisplay ({ errors }) {
 
   return errorsDisplay
 }
+
+export default Form

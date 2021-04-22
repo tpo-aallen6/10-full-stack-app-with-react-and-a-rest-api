@@ -9,8 +9,8 @@ import { Link, useParams } from 'react-router-dom'
 const CourseDetail = (props) => {
   const [course, setCourse] = useState({})
   const [courseOwner, setCourseOwner] = useState('')
-  const [errors, setErrors] = useState([])
-  const [ownerEmail, setOwnerEmail] = useState('')
+  // const [errors, setErrors] = useState([])
+  // const [ownerEmail, setOwnerEmail] = useState('')
   const { id } = useParams()
 
   const authUser = props.context.authenticatedUser
@@ -21,7 +21,7 @@ const CourseDetail = (props) => {
       .then((json) => {
         setCourse(json.course[0])
         setCourseOwner(json.course[0].User)
-        setOwnerEmail(json.course[0].User.emailAddress)
+        // setOwnerEmail(json.course[0].User.emailAddress)
       })
       .catch((error) => console.error(error))
   }, [id])
@@ -35,13 +35,14 @@ const CourseDetail = (props) => {
     e.preventDefault()
 
     context.data.deleteCourse(course, authUser.emailAddress, authUser.password)
-      .then((errors) => {
-        if (errors.length) {
-          setErrors(errors)
-        } else {
-          props.history.push('/')
-        }
-      })
+      .then(() => props.history.push('/'))
+      // .then((errors) => {
+      //   if (errors.length) {
+      //     setErrors(errors)
+      //   } else {
+      //     props.history.push('/')
+      //   }
+      // })
   }
 
   return (
